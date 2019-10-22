@@ -5,7 +5,13 @@
 ## Project makefile
 ##
 
-SRC	=	main.c	\
+SRC	=	arithmetic.c	\
+		base.c		\
+		check_error.c	\
+		compute.c	\
+		display.c	\
+		eval_expr.c	\
+		main.c
 
 OBJ	=	$(SRC:.c=.o)
 

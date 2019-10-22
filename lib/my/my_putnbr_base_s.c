@@ -9,9 +9,21 @@
 
 void my_putchar(char c);
 
+static int calc_len_nbr_bin(int nb)
+{
+    int div = 1;
+    int i = 0;
+
+    while (nb / div > 1) {
+        i++;
+        div *= 2;
+    }
+    return (i);
+}
+
 static char *base_conv(int nb, int base, char const *basestr)
 {
-    int res[100];
+    int *res = malloc(sizeof(int) * calc_len_nbr_bin(nb));
     char *ret;
     int i = 0;
     int k = 0;
@@ -25,6 +37,7 @@ static char *base_conv(int nb, int base, char const *basestr)
         ret[k++] = basestr[res[j]];
     }
     ret[k] = '\0';
+    free(res);
     return (ret);
 }
 

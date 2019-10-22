@@ -9,7 +9,7 @@
 
 char *convert_base(char const *nbr, char const *base_from, char const *base_to)
 {
-    int nb = 42;
+    int nb;
     char *str;
 
     nb = my_getnbr_base(nbr, base_from);
