@@ -5,7 +5,11 @@
 ## Project makefile
 ##
 
-SRC	=	arithmetic.c	\
+SRC	=	infinadd/infinadd.c	\
+		infinadd/base.c		\
+		infinadd/calcul.c	\
+		infinadd/main.c		\
+		arithmetic.c	\
 		base.c		\
 		check_error.c	\
 		compute.c	\
@@ -17,15 +21,16 @@ OBJ	=	$(SRC:.c=.o)
 
 NAME	=	calc
 
-CFLAGS	+= -Wall -Wextra -I./../include
+CFLAGS	+= -Wall -Wextra -I./include
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	gcc -o $(NAME) $(OBJ) -L../lib/my -lmy
+	make -C ./lib/my
+	gcc -o $(NAME) $(OBJ) -L./lib/my -lmy
 
 clean:
-	rm -f  $(OBJ)
+	rm -f $(OBJ)
 
 fclean:	clean
 	rm -f $(NAME)
