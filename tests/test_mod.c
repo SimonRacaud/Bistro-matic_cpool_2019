@@ -6,12 +6,9 @@
 */
 
 
-#include  <criterion/criterion.h>
+#include <criterion/criterion.h>
 
-
-
-Test(suite_name , test_name)
+Test(mod, test_name)
 {
-
 
 }
