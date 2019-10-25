@@ -8,6 +8,12 @@
 #ifndef INFINADD_H
 #define INFINADD_H
 
+#define CNEG '-'
+#define CPOS '+'
+#define ERROR_MSG "error""
+#define C_IGNORE ' '
+#define DIGIT_START '0'
+
 int longest(char const *str1, char const *str2);
 char *smaller_nb(char *str1, char *str2);
 int is_pos_num(char c);

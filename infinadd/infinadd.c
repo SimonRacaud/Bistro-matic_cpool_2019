@@ -27,20 +27,21 @@ char *create_res_str(char const *str1, char const *str2)
 
 void apply_symbol(char *res_symbol, char *str1, char *str2)
 {
-    *res_symbol = '+';
-    if (str1[0] == '-' && str2[0] != '-') {
+    *res_symbol = C_IGNORE;
+    if (str1[0] == CNEG && str2[0] != CNEG) {
         if (smaller_nb(str1, str2) == str2)
-            *res_symbol = '-';
-    } else if (str2[0] == '-' && str1[0] != '-') {
+            *res_symbol = CNEG;
+    } else if (str2[0] == CNEG && str1[0] != CNEG) {
         if (smaller_nb(str1, str2) == str1)
-            *res_symbol = '-';
+            *res_symbol = CNEG;
     } else {
-        if (str1[0] == '-' && str2[0] == '-')
-            *res_symbol = '-';
+        if (str1[0] == CNEG && str2[0] == CNEG)
+            *res_symbol = CNEG;
     }
 }
 
-void display_res(char *res)
+///////////////////////////////////////
+void display_res(char *res) // DEBUG
 {
     int first_digit = 0;
 
@@ -51,23 +52,24 @@ void display_res(char *res)
             my_putchar(res[i]);
     }
     my_putchar('\n');
-}
+}//////////////////////////////////////
 
-void infinadd(char *str1, char *str2)
+char *infinadd(char *str1, char *str2)
 {
     char *res = create_res_str(str1, str2);
 
     if (res == NULL) {
-        write(2, "ERROR: malloc res str\n", 22);
-        return;
+        write(2, ERROR_MSG, 6);
+        exit(84);
     }
-    if ((str1[0] == '-' || str2[0] == '-') && str1[0] != str2[0]) {
+    if ((str1[0] == CNEG || str2[0] == CNEG) && str1[0] != str2[0]) {
         if (smaller_nb(str1, str2) == str1)
             calcul(res, str2, str1, 0);
         else
             calcul(res, str1, str2, 0);
     } else
         calcul(res, str1, str2, 1);
-    display_res(res);
-    free(res);
+    display_res(res); // DEBUG
+    return (res);
+    free(res); // DEBUG
 }

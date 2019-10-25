@@ -87,9 +87,9 @@ void calcul(char *res, char *str1, char *str2, int is_add)
         cur2 < str2 ? cur2 = &out : cur2--;
     }
     if (carriedNum != 0)
-        res[1] = '1';
+        res[1] = DIGIT_START + 1;
     else
-        res[1] = '*';
+        res[1] = C_IGNORE;
     res[longestNb + 2] = '\0';
     apply_symbol(&res[0], str1, str2);
 }
