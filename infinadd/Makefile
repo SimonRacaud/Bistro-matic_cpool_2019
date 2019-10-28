@@ -21,7 +21,7 @@ OBJ_CRIT =	$(SRC_CRIT:.c=.o)
 
 NAME	=	infin_add
 
-CFLAGS	+= -Wall -Wextra -I../include --coverage -lcriterion
+CFLAGS	+= -Wall -Wextra -I../include
 
 all:	$(NAME)
 
@@ -39,4 +39,7 @@ re:	fclean all
 
 test:		$(OBJ_CRIT)
 	make -C ../lib/my
-	gcc -o $(NAME) $(OBJ_CRIT) -L../lib/my -lmy
+	gcc -o $(NAME) $(OBJ_CRIT) -L../lib/my -lmy --coverage -lcriterion && ./infin_add
+	rm -f *.gcda
+	rm -f *.gcno
+	rm -f $(OBJ_CRIT)

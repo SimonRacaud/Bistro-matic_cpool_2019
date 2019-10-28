@@ -40,20 +40,6 @@ void apply_symbol(char *res_symbol, char *str1, char *str2, int base)
     }
 }
 
-///////////////////////////////////////
-void display_res(char *res, int base) // DEBUG
-{
-    int first_dig = 0;
-
-    for (int i = 0; i < my_strlen(res); i++) {
-        if ((first_dig == 0 && is_pos_num(res[i], base)) || res[i + 1] == '\0')
-            first_dig = 1;
-        if (first_dig || res[i] == '-')
-            my_putchar(res[i]);
-    }
-    my_putchar('\n');
-}//////////////////////////////////////
-
 char *infinadd_base(char *str1, char *str2, int base)
 {
     char *res = create_res_str(str1, str2);
@@ -71,7 +57,5 @@ char *infinadd_base(char *str1, char *str2, int base)
             calcul(res, str, 0, base);
     } else
         calcul(res, str, 1, base);
-    display_res(res, base); // DEBUG
     return (res);
-    free(res); // DEBUG
 }
