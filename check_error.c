@@ -28,7 +28,7 @@ void check_base(char const *b)
     }
 }
 
-int double_base_error(char const *b, char *base_s, int i, int y)
+static int double_base_error(char const *b, char *base_s, int i, int y)
 {
     if (b[i] == base_s[y]) {
         return 1;
@@ -36,7 +36,7 @@ int double_base_error(char const *b, char *base_s, int i, int y)
     return 0;
 }
 
-int double_op_error(char const *op, char *op_s, int i, int y)
+static int double_op_error(char const *op, char *op_s, int i, int y)
 {
     if (op[i] == op_s[y]) {
         return 2;
@@ -44,7 +44,7 @@ int double_op_error(char const *op, char *op_s, int i, int y)
     return 0;
 }
 
-void check_double_op(char *base, char *op)
+void check_double_op_base(char *base, char *op)
 {
     char *base_stock = base;
     char *op_stock = op;
