@@ -5,8 +5,9 @@
 ** Functions that check parameters in order to find errors
 */
 
-#include "include/my.h"
-#include "include/bistromatic.h"
+#include "my.h"
+#include "bistromatic.h"
+#include <stdlib.h>
 
 void check_ops(char const *ops)
 {
@@ -59,5 +60,22 @@ void check_double_op_base(char *base, char *op)
             my_putstr(SYNTAX_ERROR_MSG);
             exit(EXIT_BASE);
         }
+    }
+}
+
+void check_only_op_base_in_expr(char *expr, char *base, char *op)
+{
+    int i = -1;
+    int check = 0;
+    char search[2] = {0, 0};
+
+    while (expr[++i] != '\0') {
+        search[0] = expr[i];
+        if (my_strstr(base, search) != NULL)
+            continue;
+        if (my_strstr(op, search) != NULL)
+            continue;
+        my_putstr(SYNTAX_ERROR_MSG);
+        exit(84);
     }
 }
