@@ -8,10 +8,13 @@
 SRC	=	infinadd/infinadd.c	\
 		infinadd/basic.c	\
 		infinadd/calcul.c	\
-		arithmetic.c	\
-		check_error.c	\
-		compute.c	\
-		display.c	\
+		arithmetic.c		\
+		check_error.c		\
+		compute.c		\
+		display.c		\
+		substituate.c		\
+		resolve.c		\
+		debug_display.c		\
 		main.c
 
 OBJ	=	$(SRC:.c=.o)

@@ -48,8 +48,7 @@ int main(int ac, char **av)
     size = my_getnbr(av[3]);
     expr = get_expr(size);
     check_only_op_base_in_expr(expr, base, op);
-    substituate(expr, operators, "xyz{|}~");
-    /// resolve(expr, base);
+    resolve(expr, operators, base);
     /// display_result(result, base, operators);
     free(expr);
     return (EXIT_SUCCESS);
