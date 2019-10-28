@@ -6,7 +6,8 @@
 ** by our own in the base and the ops
 */
 
-#include "include/my.h"
+#include "my.h"
+#include "bistromatic.h"
 
 static void do_i_sub_it(char *str, char old, char new, int i)
 {

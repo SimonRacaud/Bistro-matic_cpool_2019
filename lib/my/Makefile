@@ -12,6 +12,7 @@ SRC	=	my_compute_power_rec.c	\
 		my_isneg.c		\
 		my_is_prime.c		\
 		my_putchar.c		\
+		my_putstr_error.c	\
 		my_putnbr_base.c	\
 		my_put_nbr.c		\
 		my_putstr.c		\
