@@ -10,7 +10,7 @@
 #include "my.h"
 #include "infinadd.h"
 
-char *create_res_str(char const *str1, char const *str2)
+static char *create_res_str(char const *str1, char const *str2)
 {
     int lenstr1 = my_strlen(str1);
     int lenstr2 = my_strlen(str2);
@@ -25,14 +25,14 @@ char *create_res_str(char const *str1, char const *str2)
     return (res);
 }
 
-void apply_symbol(char *res_symbol, char *str1, char *str2)
+void apply_symbol(char *res_symbol, char *str1, char *str2, int base)
 {
     *res_symbol = C_IGNORE;
     if (str1[0] == CNEG && str2[0] != CNEG) {
-        if (smaller_nb(str1, str2) == str2)
+        if (smaller_nb(str1, str2, base) == str2)
             *res_symbol = CNEG;
     } else if (str2[0] == CNEG && str1[0] != CNEG) {
-        if (smaller_nb(str1, str2) == str1)
+        if (smaller_nb(str1, str2, base) == str1)
             *res_symbol = CNEG;
     } else {
         if (str1[0] == CNEG && str2[0] == CNEG)
@@ -40,36 +40,22 @@ void apply_symbol(char *res_symbol, char *str1, char *str2)
     }
 }
 
-///////////////////////////////////////
-void display_res(char *res) // DEBUG
-{
-    int first_digit = 0;
-
-    for (int i = 0; i < my_strlen(res); i++) {
-        if ((first_digit == 0 && is_pos_num(res[i])) || res[i + 1] == '\0')
-            first_digit = 1;
-        if (first_digit || res[i] == '-')
-            my_putchar(res[i]);
-    }
-    my_putchar('\n');
-}//////////////////////////////////////
-
-char *infinadd(char *str1, char *str2)
+char *infinadd_base(char *str1, char *str2, int base)
 {
     char *res = create_res_str(str1, str2);
+    char *str[2] = {str1, str2};
+    char *str_rev[2] = {str2, str1};
 
     if (res == NULL) {
-        write(2, ERROR_MSG, 6);
+        write(2, MY_ERROR_MSG, 6);
         exit(84);
     }
     if ((str1[0] == CNEG || str2[0] == CNEG) && str1[0] != str2[0]) {
-        if (smaller_nb(str1, str2) == str1)
-            calcul(res, str2, str1, 0);
+        if (smaller_nb(str1, str2, base) == str1)
+            calcul(res, str_rev, 0, base);
         else
-            calcul(res, str1, str2, 0);
+            calcul(res, str, 0, base);
     } else
-        calcul(res, str1, str2, 1);
-    display_res(res); // DEBUG
+        calcul(res, str, 1, base);
     return (res);
-    free(res); // DEBUG
 }

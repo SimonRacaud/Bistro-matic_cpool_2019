@@ -8,6 +8,8 @@
 #include "my.h"
 #include "infinadd.h"
 
+static int my_strlen_num(char const *str, int base);
+
 int longest(char const *str1, char const *str2, int base)
 {
     if (my_strlen_num(str1, base) > my_strlen_num(str2, base)) {
