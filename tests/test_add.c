@@ -15,6 +15,7 @@ Test(add, add_zeros)
     char *res = add("0", "0", 10);
 
     cr_assert_str_eq(res, "0");
+    free(res);
 }
 
 Test(add, add_zero_and_number)

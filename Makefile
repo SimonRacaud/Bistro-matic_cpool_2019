@@ -8,7 +8,6 @@
 SRC	=	infinadd/infinadd.c	\
 		infinadd/basic.c	\
 		infinadd/calcul.c	\
-		infinadd/main.c		\
 		arithmetic.c	\
 		check_error.c	\
 		compute.c	\
