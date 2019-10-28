@@ -10,29 +10,48 @@ SRC	=	infinadd/infinadd.c	\
 		infinadd/calcul.c	\
 		infinadd/main.c		\
 		arithmetic.c	\
-		base.c		\
 		check_error.c	\
 		compute.c	\
 		display.c	\
-		eval_expr.c	\
 		main.c
 
 OBJ	=	$(SRC:.c=.o)
 
+CRITERION =	tests/test_error.c	\
+		check_error.c	\
+
+OBJ_CRIT =	$(CRITERION:.c=.o)
+
+CRITERION_NAME =	unit_tests
+
 NAME	=	calc
+
+LIB	=	libmy.a
 
 CFLAGS	+= -Wall -Wextra -I./include
 
+CFLAGS_CRIT	+= -Wall -Wextra -I./include -lcriterion --coverage -g -L./lib/my -lmy
+
 all:	$(NAME)
 
-$(NAME):	$(OBJ)
-	make -C ./lib/my
+$(NAME):	$(OBJ) $(LIB)
 	gcc -o $(NAME) $(OBJ) -L./lib/my -lmy
 
+$(CRITERION_NAME) :	 $(LIB) $(OBJ_CRIT)
+		gcc -o $(CRITERION_NAME) $(OBJ_CRIT) $(CFLAGS_CRIT)
+
+$(LIB) :
+	make -C ./lib/my
+
 clean:
+	make -C ./lib/my clean
 	rm -f $(OBJ)
+	rm -f $(CRITERION_NAME)
 
 fclean:	clean
+	make -C ./lib/my fclean
 	rm -f $(NAME)
 
 re:	fclean all
+
+.PHONY :	clean fclean re
