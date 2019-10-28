@@ -15,7 +15,8 @@ SRC	=	infinadd/infinadd.c	\
 		substituate.c		\
 		resolve.c		\
 		debug_display.c		\
-		main.c
+		main.c			\
+		check_error2.c
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -44,5 +44,6 @@ char **my_str_to_word_array(char const *str);
 int my_show_word_array(char * const *tab);
 int my_getnbr_base(char const *str, char const *base);
 char *my_putnbr_base_s(int nbr, char const *base);
+void my_putstr_error(char *str);
 
 #endif /* MY_H_ */

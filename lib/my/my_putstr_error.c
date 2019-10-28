@@ -5,6 +5,7 @@
 ** write a string on the error output
 */
 
+#include "my.h"
 #include <unistd.h>
 
 void my_putstr_error(char *str)
