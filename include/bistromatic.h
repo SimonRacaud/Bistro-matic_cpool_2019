@@ -17,4 +17,9 @@
 #define SYNTAX_ERROR_MSG "syntax error"
 #define ERROR_MSG        "error"
 
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+
 char *eval_expr(char const *expr, char const *base);
+void check_double_op(char *base, char *op);
