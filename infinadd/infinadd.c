@@ -57,5 +57,7 @@ char *infinadd_base(char *str1, char *str2, int base)
             calcul(res, str, 0, base);
     } else
         calcul(res, str, 1, base);
+    if (res[my_strlen(res) - 1] == C_IGNORE)
+        res[my_strlen(res) - 1] = DIGIT_START;
     return (res);
 }
