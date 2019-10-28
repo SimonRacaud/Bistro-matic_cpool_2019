@@ -44,4 +44,7 @@ void debug_display(char *str);
 void display_usage(char *program_name);
 void display_result(char *result, char *base);
 
+char *resolve(char *expr, char *operators, char *base);
+char *compute(char *operation);
+
 #endif
