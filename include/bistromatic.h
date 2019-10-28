@@ -1,3 +1,13 @@
+/*
+** EPITECH PROJECT, 2019
+** CPool_bistro-matic_2019
+** File description:
+** Main header file
+*/
+
+#ifndef H_BISTRO
+#define H_BISTRO
+
 #define OP_OPEN_PARENT_IDX  0
 #define OP_CLOSE_PARENT_IDX 1
 #define OP_PLUS_IDX         2
@@ -23,3 +33,7 @@
 
 char *eval_expr(char const *expr, char const *base);
 void check_double_op(char *base, char *op);
+
+void debug_display(char *str, char *base, char *operators);
+
+#endif
