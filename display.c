@@ -18,7 +18,21 @@ void display_usage(char *program_name)
     my_putstr("operators\n- size_read: number of characters to be read\n");
 }
 
-void display_result(char *result, char *base, char *operators)
+void display_result(char *result, char *base)
 {
+    char old_base[87];
+    int i = 33;
+    int pos;
 
+    for (pos = 0; pos < my_strlen(base); pos++) {
+        old_base[pos] = i;
+        i++;
+    }
+    old_base[pos + 1] = '\0';
+    substituate(result, old_base, base);
+    for (pos = 0; pos < my_strlen(result); pos++) {
+        if (result[pos] != 32)
+            my_putchar(result[pos]);
+    }
+    my_putchar('\n');
 }
