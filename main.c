@@ -48,7 +48,7 @@ int main(int ac, char **av)
     size = my_getnbr(av[3]);
     expr = get_expr(size);
     check_only_op_base_in_expr(expr, base, op);
-    // substitution des opérateurs
+    substituate(expr, operators, "xyz{|}~");
     /// resolve(expr, base);
     /// display_result(result, base, operators);
     free(expr);
