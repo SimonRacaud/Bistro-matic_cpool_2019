@@ -30,15 +30,16 @@ LIB	=	libmy.a
 
 CFLAGS	+= -Wall -Wextra -I./include
 
-CFLAGS_CRIT	+= -Wall -Wextra -I./include -lcriterion --coverage -g -L./lib/my -lmy
+CFLAGS_CRIT	+= -Wall -Wextra -I./include -g -L./lib/my -lmy
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ) $(LIB)
 	gcc -o $(NAME) $(OBJ) -L./lib/my -lmy
 
-$(CRITERION_NAME) :	 $(LIB) $(OBJ_CRIT)
-		gcc -o $(CRITERION_NAME) $(OBJ_CRIT) $(CFLAGS_CRIT)
+tests_run :	 $(LIB) $(OBJ_CRIT)
+		gcc -o $(CRITERION_NAME) $(OBJ_CRIT) $(CFLAGS_CRIT) -lcriterion --coverage
+		./$(CRITERION_NAME)
 
 $(LIB) :
 	make -C ./lib/my
