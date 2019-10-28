@@ -36,9 +36,10 @@ char *eval_expr(char const *expr, char const *base);
 void check_base(char const *b);
 void check_ops(char const *ops);
 void check_double_op_base(char *base, char *op);
+void check_only_op_base_in_expr(char *expr, char *base, char *op);
 
 void debug_display(char *str);
 void display_usage(char *program_name);
-void display_result(char *result, char *base, char *operators);
+void display_result(char *result, char *base);
 
 #endif
