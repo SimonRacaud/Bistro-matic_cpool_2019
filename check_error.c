@@ -9,26 +9,6 @@
 #include "bistromatic.h"
 #include <stdlib.h>
 
-void check_ops(char const *ops)
-{
-    if (my_strlen(ops) != 7) {
-        my_putstr(SYNTAX_ERROR_MSG);
-        exit(EXIT_OPS);
-    }
-}
-
-void check_base(char const *b)
-{
-    if (my_strlen(b) < 2) {
-        my_putstr(SYNTAX_ERROR_MSG);
-        exit(EXIT_BASE);
-    }
-    if (my_strlen(b) > 86) {
-        my_putstr(SYNTAX_ERROR_MSG);
-        exit(EXIT_BASE);
-    }
-}
-
 static int double_base_error(char const *b, char *base_s, int i, int y)
 {
     if (b[i] == base_s[y]) {
@@ -45,11 +25,20 @@ static int double_op_error(char const *op, char *op_s, int i, int y)
     return 0;
 }
 
+static int base_eq_op(char b, char o)
+{
+    if (b == o) {
+        my_putstr_error("Base digits should not be equals to operators");
+        exit(84);
+    }
+}
+
 void check_double_op_base(char *base, char *op)
 {
     char *base_stock = base;
     char *op_stock = op;
     int error = 0;
+    int pos = 0;
 
     for (int i = 0; (i < my_strlen(base) || i < my_strlen(op)); i++) {
         for (int y = i + 1; y < my_strlen(base_stock); y++)
@@ -57,8 +46,13 @@ void check_double_op_base(char *base, char *op)
         for (int y = i + 1; y < my_strlen(op_stock); y++)
             error += double_op_error(op, op_stock, i, y);
         if (error > 0) {
-            my_putstr(SYNTAX_ERROR_MSG);
+            my_putstr_error(SYNTAX_ERROR_MSG);
             exit(EXIT_BASE);
+        }
+    }
+    for (int i = 0; i < my_strlen(base): i++) {
+        for (int y = 0; y < my_strlen(op); y++) {
+            base_eq_op(base[i], op[y]);
         }
     }
 }
@@ -75,7 +69,7 @@ void check_only_op_base_in_expr(char *expr, char *base, char *op)
             continue;
         if (my_strstr(op, search) != NULL)
             continue;
-        my_putstr(SYNTAX_ERROR_MSG);
+        my_putstr_error(SYNTAX_ERROR_MSG);
         exit(84);
     }
 }
