@@ -30,15 +30,17 @@ void check_base(char const *b)
 
 int double_base_error(char const *b, char *base_s, int i, int y)
 {
-    if (b[i] == base_s[y])
+    if (b[i] == base_s[y]) {
         return 1;
+    }
     return 0;
 }
 
 int double_op_error(char const *op, char *op_s, int i, int y)
 {
-    if (op[i] == op_s[y])
+    if (op[i] == op_s[y]) {
         return 2;
+    }
     return 0;
 }
 
@@ -49,18 +51,13 @@ void check_double_op(char *base, char *op)
     int error = 0;
 
     for (int i = 0; (i < my_strlen(base) || i < my_strlen(op)); i++) {
-        printf("tour de boucle %d", i);
         for (int y = i + 1; y < my_strlen(base_stock); y++)
-            error = double_base_error(base, base_stock, i, y);
+            error += double_base_error(base, base_stock, i, y);
         for (int y = i + 1; y < my_strlen(op_stock); y++)
-            error = double_op_error(op, op_stock, i, y);
-        if (error == 1) {
+            error += double_op_error(op, op_stock, i, y);
+        if (error > 0) {
             my_putstr(SYNTAX_ERROR_MSG);
             exit(EXIT_BASE);
-        }
-        if (error == 2) {
-            my_putstr(SYNTAX_ERROR_MSG);
-            exit(EXIT_OPS);
         }
     }
 }

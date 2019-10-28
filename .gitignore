@@ -110,5 +110,6 @@ NormEZ.rb
 # tests/
 *.gcda
 *.gcno
+test_debugdisplay.c
 
 # End of https://www.gitignore.io/api/c,emacs
