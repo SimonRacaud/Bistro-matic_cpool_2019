@@ -6,7 +6,7 @@
 ##
 
 SRC	=	infinadd/infinadd.c	\
-		infinadd/base.c		\
+		infinadd/basic.c	\
 		infinadd/calcul.c	\
 		infinadd/main.c		\
 		arithmetic.c	\
@@ -17,8 +17,11 @@ SRC	=	infinadd/infinadd.c	\
 
 OBJ	=	$(SRC:.c=.o)
 
-CRITERION =	tests/test_error.c	\
-		check_error.c	\
+CRITERION =	tests/test_add.c	\
+		infinadd/infinadd.c     \
+		infinadd/basic.c        \
+		infinadd/calcul.c       \
+		arithmetic.c
 
 OBJ_CRIT =	$(CRITERION:.c=.o)
 
