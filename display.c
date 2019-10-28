@@ -6,6 +6,7 @@
 */
 
 #include "my.h"
+#include "bistromatic.h"
 
 void display_usage(char *program_name)
 {
@@ -17,7 +18,7 @@ void display_usage(char *program_name)
     my_putstr("operators\n- size_read: number of characters to be read\n");
 }
 
-void display_result(void)
+void display_result(char *result, char *base, char *operators)
 {
 
 }

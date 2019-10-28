@@ -34,6 +34,8 @@
 char *eval_expr(char const *expr, char const *base);
 void check_double_op(char *base, char *op);
 
-void debug_display(char *str, char *base, char *operators);
+void debug_display(char *str);
+void display_usage(char *program_name);
+void display_result(char *result, char *base, char *operators);
 
 #endif
