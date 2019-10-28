@@ -13,16 +13,17 @@ int my_put_nbr(int nb)
 {
     int i = 0;
     char c;
+    long int lnb = nb;
 
-    if (nb < 0) {
+    if (lnb < 0) {
         my_putchar('-');
-        nb *= (-1);
+        lnb = -lnb;
     }
-    while (nb / poww3(10, i) >= 10) {
+    while (lnb / poww3(10, i) >= 10) {
         i++;
     }
     while (i >= 0) {
-        c = ((nb / poww3(10, i)) % 10) + '0';
+        c = ((lnb / poww3(10, i)) % 10) + '0';
         my_putchar(c);
         i--;
     }

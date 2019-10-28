@@ -55,7 +55,6 @@ static void disp(int *adr, char const *str, int nb)
     base_conv(*adr, 16, "0123456789abcdef", 8);
     my_putchar(':');
     my_putchar(' ');
-    my_putchar(' ');
     disp_asciihex(adr, str, nb);
     disp_lastchar(str, *adr, nb);
     my_putchar('\n');

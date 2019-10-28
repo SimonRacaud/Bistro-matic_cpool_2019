@@ -14,8 +14,9 @@ int my_is_prime(int nb)
     if (nb < 2)
         return (0);
     for (int div = 2; div <= sqrt_nb; div++) {
-        if (nb % div == 0)
+        if (nb % div == 0 && nb != div) {
             return (0);
+        }
     }
     return (1);
 }
