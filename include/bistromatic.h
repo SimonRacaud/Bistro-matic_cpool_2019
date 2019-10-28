@@ -38,6 +38,8 @@ void check_ops(char const *ops);
 void check_double_op_base(char *base, char *op);
 void check_only_op_base_in_expr(char *expr, char *base, char *op);
 
+void substituate(char *str, char *old, char *new);
+
 void debug_display(char *str);
 void display_usage(char *program_name);
 void display_result(char *result, char *base);
