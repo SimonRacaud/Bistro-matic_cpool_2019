@@ -8,88 +8,88 @@
 #include "my.h"
 #include "infinadd.h"
 
-void apply_carried_number_add(char *res, int *carriedNum, int *new_cn)
+void apply_carried_number_add(char *res, int *carriedNum, int *new_cn, int base)
 {
     if (*carriedNum != 0 && (*new_cn != 1 || *carriedNum > 1)) {
-        if (*res + 1 <= '9') {
+        if (*res + 1 <= DIGIT_START + (base - 1)) {
             *res += 1;
             (*carriedNum)--;
         } else {
-            *res = '0';
+            *res = DIGIT_START;
         }
     }
 }
 
-void treat_digit_add(char *res, char const *d1, char const *d2, int *carriedNum)
+void treat_digit_add(char *res, char **ptr, int *carriedNum, int base)
 {
     int new_carriedNb = 0;
 
-    if (!is_pos_num(*d1) && *d2 != '\0') {
-        *res = *d2;
-    } else if (!is_pos_num(*d2) && *d1 != '\0') {
-        *res = *d1;
+    if (!is_pos_num(*ptr[0], base) && *ptr[1] != '\0') {
+        *res = *ptr[1];
+    } else if (!is_pos_num(*ptr[1], base) && *ptr[0] != '\0') {
+        *res = *ptr[0];
     } else {
-        if (*d1 + (*d2 - '0') <= '9') {
-            *res = *d1 + (*d2 - '0');
+        if (*ptr[0] + (*ptr[1] - DIGIT_START) <= DIGIT_START + (base - 1)) {
+            *res = *ptr[0] + (*ptr[1] - DIGIT_START);
         } else {
             *carriedNum += 1;
             new_carriedNb = 1;
-            *res = (*d1 + (*d2 - '0')) - 10;
+            *res = (*ptr[0] + (*ptr[1] - DIGIT_START)) - base;
         }
     }
-    apply_carried_number_add(res, carriedNum, &new_carriedNb);
+    apply_carried_number_add(res, carriedNum, &new_carriedNb, base);
 }
 
 void apply_carried_number_sub(char *res, int *carriedNum, int *new_cn)
 {
     if (*carriedNum != 0 && (*new_cn != 1 || *carriedNum > 1)) {
-        if (*res - 1 >= '0') {
+        if (*res - 1 >= DIGIT_START) {
             *res -= 1;
             (*carriedNum)--;
         } else {
-            *res = '0';
+            *res = DIGIT_START;
         }
     }
 }
 
-void treat_digit_sub(char *res, char const *d1, char const *d2, int *carriedNum)
+void treat_digit_sub(char *res, char **ptr, int *carriedNum, int base)
 {
     int new_carriedNb = 0;
 
-    if (!is_pos_num(*d2)) {
-        *res = *d1;
+    if (!is_pos_num(*ptr[1], base)) {
+        *res = *ptr[0];
     } else {
-        if (*d1 - (*d2 - '0') >= '0') {
-            *res = *d1 - (*d2 - '0');
+        if (*ptr[0] - (*ptr[1] - DIGIT_START) >= DIGIT_START) {
+            *res = *ptr[0] - (*ptr[1] - DIGIT_START);
         } else {
             *carriedNum += 1;
             new_carriedNb = 1;
-            *res = 10 + (*d1 - (*d2 - '0'));
+            *res = base + (*ptr[0] - (*ptr[1] - DIGIT_START));
         }
     }
     apply_carried_number_sub(res, carriedNum, &new_carriedNb);
 }
 
-void calcul(char *res, char *str1, char *str2, int is_add)
+void calcul(char *res, char **str, int is_add, int base)
 {
     int carriedNum = 0;
-    char *cur1 = &str1[my_strlen(str1) - 1];
-    char *cur2 = &str2[my_strlen(str2) - 1];
+    char *cur[2] = {&str[0][my_strlen(str[0]) - 1]};
     char out = '\0';
-    int longestNb = longest(str1, str2);
+    int longestNb = longest(str[0], str[1], base);
 
+    cur[1] = &str[1][my_strlen(str[1]) - 1];
     for (int i = 0; i < longestNb; i++) {
         if (is_add)
-            treat_digit_add(&res[longestNb - i + 1], cur1, cur2, &carriedNum);
+            treat_digit_add(&res[longestNb - i + 1], cur, &carriedNum, base);
         else
-            treat_digit_sub(&res[longestNb - i + 1], cur1, cur2, &carriedNum);
-        cur1 < str1 ? cur1 = &out : cur1--;
-        cur2 < str2 ? cur2 = &out : cur2--;
+            treat_digit_sub(&res[longestNb - i + 1], cur, &carriedNum, base);
+        cur[0] < str[0] ? cur[0] = &out : cur[0]--;
+        cur[1] < str[1] ? cur[1] = &out : cur[1]--;
     }
     if (carriedNum != 0)
         res[1] = DIGIT_START + 1;
     else
         res[1] = C_IGNORE;
     res[longestNb + 2] = '\0';
-    apply_symbol(&res[0], str1, str2);
+    apply_symbol(&res[0], str[0], str[1], base);
 }

@@ -10,26 +10,23 @@
 
 #define CNEG '-'
 #define CPOS '+'
-#define ERROR_MSG "error""
+#define MY_ERROR_MSG "error"
 #define C_IGNORE ' '
 #define DIGIT_START '0'
 
-int longest(char const *str1, char const *str2);
-char *smaller_nb(char *str1, char *str2);
-int is_pos_num(char c);
-int my_strlen_num(char const *str);
+int longest(char const *str1, char const *str2, int base);
+char *smaller_nb(char *str1, char *str2, int base);
+int is_pos_num(char c, int base);
 
-void apply_carried_number_add(char *res, int *carriedNum, int *new_cn);
-void treat_digit_add(char *res, char const *d1, char const *d2,
-int *carriedNum);
+void apply_carried_number_add(char *res, int *carriedNum, int *new_cn,
+int base);
+void treat_digit_add(char *res, char **ptr, int *carriedNum, int base);
 void apply_carried_number_sub(char *res, int *carriedNum, int *new_cn);
-void treat_digit_sub(char *res, char const *d1, char const *d2,
-int *carriedNum);
-void calcul(char *res, char *str1, char *str2, int is_add);
+void treat_digit_sub(char *res, char **ptr, int *carriedNum, int base);
+void calcul(char *res, char **str, int is_add, int base);
 
-char *create_res_str(char const *str1, char const *str2);
-void apply_symbol(char *res_symbol, char *str1, char *str2);
-void display_res(char *res);
-void infinadd(char *str1, char *str2);
+void apply_symbol(char *res_symbol, char *str1, char *str2, int base);
+void display_res(char *res, int base);
+char *infinadd_base(char *str1, char *str2, int base);
 
 #endif
