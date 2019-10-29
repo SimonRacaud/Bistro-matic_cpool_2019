@@ -17,7 +17,7 @@ static int check_if_op_has_num(char const *expr, int i)
         if (expr[i + 1] == '\0') {
             return (84);
         }
-        if (expr[i + 1] == 'y' || expr[i - 1] == 'x') {
+        if (expr[i + 1] == 'y' || (expr[i - 1] == 'x' && expr[i] >= 124)) {
             return (84);
         }
     }
@@ -34,8 +34,10 @@ static int check_if_next_is_op(char const *expr, int i)
         (expr[i + 1] >= 33 && expr[i + 1] <= 119)) {
         return (84);
     }
-    if ((expr[i] == 'x' || expr[i] == 'y') &&
-        (expr[i + 1] == 'x' || expr[i + 1] == 'y')) {
+    if (expr[i] == 'x' && expr[i + 1] == 'y') {
+        return (84);
+    }
+    if (expr[i] == 'y' && expr[i + 1] == 'x') {
         return (84);
     }
     return 0;
