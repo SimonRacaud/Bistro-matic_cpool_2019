@@ -81,10 +81,8 @@ Test(mul, mul_negative_numbers)
     substituate(a, "0123456789", "!\"#$%&'()*");
     char b[] = "{700";
     substituate(b, "0123456789", "!\"#$%&'()*");
-    debug_display(b);
     char *res = mul(a, b, 10);
     substituate(res, "!\"#$%&'()*", "0123456789");
-
     cr_assert_str_eq(res, "  420000");
 }
 
@@ -94,10 +92,8 @@ Test(mul, mul_positive_and_negative_numbers1)
     substituate(a, "0123456789", "!\"#$%&'()*");
     char b[] = "700";
     substituate(b, "0123456789", "!\"#$%&'()*");
-    debug_display(b);
     char *res = mul(a, b, 10);
     substituate(res, "!\"#$%&'()*", "0123456789");
-
     cr_assert_str_eq(res, "{  420000");
 }
 
@@ -107,7 +103,6 @@ Test(mul, mul_positive_and_negative_numbers2)
     substituate(a, "0123456789", "!\"#$%&'()*");
     char b[] = "{700";
     substituate(b, "0123456789", "!\"#$%&'()*");
-    debug_display(b);
     char *res = mul(a, b, 10);
     substituate(res, "!\"#$%&'()*", "0123456789");
 

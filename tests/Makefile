@@ -6,15 +6,18 @@
 ##
 
 CRITERION =	test_sub.c		\
+		test_div.c		\
+		test_mul.c		\
+		test_add.c		\
+		test_mod.c		\
 		../infinadd/infinadd.c	\
 		../infinadd/basic.c	\
 		../infinadd/calcul.c	\
 		../arithmetic.c		\
 		../substituate.c	\
-		../debug_display.c	\
 		test_error.c		\
 		../check_error.c	\
-		../check_error2.	\
+		../check_error2.c	\
 		test_syntax.c		\
 		../check_syntax_error.c
 

@@ -11,8 +11,6 @@
 
 char *infinadd_base(char *str1, char *str2, int base);
 
-void debug_display(char *str);
-
 void substituate(char *str, char *old, char *new);
 
 char *add_minus(char *nb, char *neg_nb)
