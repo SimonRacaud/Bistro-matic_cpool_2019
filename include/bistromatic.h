@@ -46,7 +46,7 @@ int substituate(char *str, char const *old, char const *new);
 
 void debug_display(char *str);
 void display_usage(char *program_name);
-void display_result(char *result, char *base);
+void display_result(char *result, char *base, char *operators);
 void remove_space(char **str);
 
 int check_syntax_error(char const *expr, char const *base);
