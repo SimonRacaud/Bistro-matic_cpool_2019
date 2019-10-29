@@ -19,7 +19,9 @@ CRITERION =	test_sub.c		\
 		../check_error.c	\
 		../check_error2.c	\
 		test_syntax.c		\
-		../check_syntax_error.c
+		../check_syntax_error.c	\
+		../resolve.c		\
+		test_space.c		\
 
 OBJ_CRIT =	$(CRITERION:.c=.o)
 

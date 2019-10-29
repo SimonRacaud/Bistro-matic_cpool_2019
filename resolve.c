@@ -8,7 +8,7 @@
 #include "bistromatic.h"
 #include "my.h"
 
-static void remove_space(char **str)
+void remove_space(char **str)
 {
     char *tmp = *str;
     int pos = 0;
@@ -18,6 +18,7 @@ static void remove_space(char **str)
             tmp[pos++] = (*str)[i];
         }
     }
+    (*str)[pos] = '\0';
 }
 
 char *resolve(char *expr, char *operators, char *base)
@@ -32,5 +33,5 @@ char *resolve(char *expr, char *operators, char *base)
     substituate(expr, base, new_base);
     free(new_base);
     remove_space(&expr);
-    return eval_expr(expr, my_strlen(base));
+//    return eval_expr(expr, my_strlen(base));
 }

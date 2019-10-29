@@ -47,7 +47,7 @@ void substituate(char *str, char *old, char *new);
 void debug_display(char *str);
 void display_usage(char *program_name);
 void display_result(char *result, char *base);
-
+void remove_space(char **str);
 char *resolve(char *expr, char *operators, char *base);
 char *compute(char *operation, int base);
 char *mod(char *a, char *b, int base);
