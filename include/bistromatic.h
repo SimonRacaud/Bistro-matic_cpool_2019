@@ -58,5 +58,12 @@ char *divi(char *a, char *b, int base);
 char *sub(char *a, char *b, int base);
 char *add(char *a, char *b, int base);
 char *mul(char *a, char *b, int base);
+char *add_minus(char *nb, char *neg_nb);
+int get_result_sign(char *a, char *b, int result_sign);
+char *add_zeros(char *nb, char *result, int pow_x);
+char *infinadd_base(char *str1, char *str2, int base);
+
+void check_mod_divi_by_zero(char *beta, int idx_op, int base);
+void remove_minus_zero(char *alpha, int base);
 
 #endif

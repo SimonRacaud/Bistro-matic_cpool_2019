@@ -13,7 +13,9 @@ SRC	=	infinadd/infinadd.c	\
 		eval_expr/operator_seeker.c	\
 		eval_expr/make_operation.c	\
 		eval_expr/combine_operators.c	\
-		arithmetic.c		\
+		mul.c			\
+		add_sub_arithmetic.c	\
+		div_mod.c		\
 		check_error.c		\
 		compute.c		\
 		compute_ext.c		\

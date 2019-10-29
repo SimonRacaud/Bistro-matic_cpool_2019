@@ -13,7 +13,9 @@ CRITERION =	test_sub.c		\
 		../infinadd/infinadd.c	\
 		../infinadd/basic.c	\
 		../infinadd/calcul.c	\
-		../arithmetic.c		\
+		../add_sub_arithmetic.c	\
+		../mul.c		\
+		../div_mod.c		\
 		../substituate.c	\
 		test_error.c		\
 		../check_error.c	\
@@ -22,6 +24,13 @@ CRITERION =	test_sub.c		\
 		../check_syntax_error.c	\
 		../resolve.c		\
 		test_space.c		\
+		../eval_expr/eval_expr.c		\
+		../eval_expr/parenthesis_seeker.c	\
+		../eval_expr/operator_seeker.c		\
+		../eval_expr/make_operation.c		\
+		../eval_expr/combine_operators.c	\
+		../compute.c				\
+		../compute_ext.c
 
 OBJ_CRIT =	$(CRITERION:.c=.o)
 

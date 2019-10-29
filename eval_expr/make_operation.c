@@ -8,6 +8,7 @@
 #include "my.h"
 #include <stdlib.h>
 #include "eval_expr.h"
+#include "bistromatic.h"
 
 static void is_operator(int *nb_pt_befop)
 {

@@ -9,9 +9,6 @@
 #include "my.h"
 #include "bistromatic.h"
 
-void check_mod_divi_by_zero(char *beta, int idx_op, int base);
-void remove_minus_zero(char *alpha, int base);
-
 static int len_nbr_str(char *str, int base)
 {
     int i = -1;
