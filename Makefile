@@ -16,6 +16,7 @@ SRC	=	infinadd/infinadd.c	\
 		arithmetic.c		\
 		check_error.c		\
 		compute.c		\
+		compute_ext.c		\
 		display.c		\
 		substituate.c		\
 		resolve.c		\
