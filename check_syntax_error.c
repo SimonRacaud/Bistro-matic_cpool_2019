@@ -11,7 +11,7 @@
 static int check_if_op_has_num(char const *expr, int i)
 {
     if (expr[i] >= 122 && expr[i] <= 126) {
-        if (i == 0) {
+        if (i == 0 && expr[i] >= 124) {
             return (84);
         }
         if (expr[i + 1] == '\0') {
@@ -45,8 +45,8 @@ int check_syntax_error(char const *expr, char const *base)
 {
     int error = 0;
     for (int i = 0; i < my_strlen(expr); i++) {
-        if ((expr[i] >= 122 && expr[i] <= 126) &&
-            (expr[i + 1] >= 122 && expr[i + 1] <= 126)) {
+        if ((expr[i] >= 124 && expr[i] <= 126) &&
+            (expr[i + 1] >= 124 && expr[i + 1] <= 126)) {
             error += 84;
         }
         if ((expr[i] == '~' || expr[i] == '}') && expr[i + 1] == base[0]) {
