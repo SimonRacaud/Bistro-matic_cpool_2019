@@ -6,6 +6,7 @@
 */
 
 #include "bistromatic.h"
+#include "my.h"
 
 static void remove_space(char **str)
 {
