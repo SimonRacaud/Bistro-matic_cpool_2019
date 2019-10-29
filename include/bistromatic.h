@@ -42,7 +42,7 @@ int check_double_op_base(char *base, char *op);
 int check_only_op_base_in_expr(char *expr, char *base, char *op);
 int check_unmatch_parenthesis(char const *str);
 
-void substituate(char *str, char *old, char *new);
+int substituate(char *str, char const *old, char const *new);
 
 void debug_display(char *str);
 void display_usage(char *program_name);
