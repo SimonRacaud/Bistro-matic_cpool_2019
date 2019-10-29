@@ -50,5 +50,10 @@ void display_result(char *result, char *base);
 
 char *resolve(char *expr, char *operators, char *base);
 char *compute(char *operation, int base);
+char *mod(char *a, char *b, int base);
+char *divi(char *a, char *b, int base);
+char *sub(char *a, char *b, int base);
+char *add(char *a, char *b, int base);
+char *mul(char *a, char *b, int base);
 
 #endif

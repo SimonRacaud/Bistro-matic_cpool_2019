@@ -10,7 +10,7 @@
 #include "bistromatic.h"
 
 void check_mod_divi_by_zero(char *beta, int idx_op, int base);
-void remove_minus_zero(char *alpha);
+void remove_minus_zero(char *alpha, int base);
 
 static int len_nbr_str(char *str, int base)
 {
@@ -97,7 +97,7 @@ char *compute(char *operation, int base)
     char *result;
 
     check_mod_divi_by_zero(beta, idx_op, base);
-    remove_minus_zero(alpha);
+    remove_minus_zero(alpha, base);
     result = op[idx_op](alpha, beta, base);
     write_result(operation, result, base);
     free(result);

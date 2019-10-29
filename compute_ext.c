@@ -9,7 +9,7 @@
 #include "my.h"
 #include "bistromatic.h"
 
-static char str_is_zero(char *nbr)
+static char str_is_zero(char *nbr, int base)
 {
     int i = -1;
     char is_zero = 2;
@@ -30,16 +30,16 @@ void check_mod_divi_by_zero(char *beta, int idx_op, int base)
 
     if (idx_op != 0 && idx_op != 1)
         return;
-    is_zero = str_is_zero(beta);
+    is_zero = str_is_zero(beta, base);
     if (is_zero) {
         my_putstr_error(ERROR_MSG);
         exit(84);
     }
 }
 
-void remove_minus_zero(char *alpha)
+void remove_minus_zero(char *alpha, int base)
 {
-    if (str_is_zero(alpha) == 1) {
+    if (str_is_zero(alpha, base) == 1) {
         alpha[0] = FIRST_DIGIT;
         alpha[1] = '\0';
     }
