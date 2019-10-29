@@ -22,8 +22,14 @@ static void remove_space(char **str)
 
 char *resolve(char *expr, char *operators, char *base)
 {
+    int len = my_strlen(base);
+    char new_base = malloc(sizeof(char) * len + 1);
+
     substituate(expr, operators, "xyz{|}~");
-    //substituate(expr, base, );
-    //return eval_expr();
-    return NULL; // TEMP
+    for (char i = 33; i < len + 33; i++)
+        new_base[i - 33] = i;
+    new_base[len] = '\0';
+    substituate(expr, base, new_base);
+    free(new_base);
+    return eval_expr(expr, my_strlen(base));
 }
