@@ -20,17 +20,15 @@ void display_usage(char *program_name)
 
 void display_result(char *result, char *base)
 {
-    char old_base[87];
-    int i = 33;
-    int pos;
+    int len_base = my_strlen(base);
+    char *old_base = malloc(sizeof(char) * (len_base + 1));
 
-    for (pos = 0; pos < my_strlen(base); pos++) {
-        old_base[pos] = i;
-        i++;
+    for (int i = 33; i < len_base + 33; i++) {
+        old_base[i - 33] = i;
     }
-    old_base[pos + 1] = '\0';
+    old_base[len_base] = '\0';
     substituate(result, old_base, base);
-    for (pos = 0; pos < my_strlen(result); pos++) {
+    for (int pos = 0; pos < my_strlen(result); pos++) {
         if (result[pos] != 32)
             my_putchar(result[pos]);
     }

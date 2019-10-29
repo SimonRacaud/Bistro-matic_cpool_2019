@@ -48,7 +48,10 @@ void debug_display(char *str);
 void display_usage(char *program_name);
 void display_result(char *result, char *base);
 void remove_space(char **str);
+
+int check_syntax_error(char const *expr, char const *base);
 char *resolve(char *expr, char *operators, char *base);
+
 char *compute(char *operation, int base);
 char *mod(char *a, char *b, int base);
 char *divi(char *a, char *b, int base);

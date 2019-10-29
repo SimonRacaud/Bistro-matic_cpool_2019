@@ -31,7 +31,9 @@ char *resolve(char *expr, char *operators, char *base)
         new_base[i - 33] = i;
     new_base[len] = '\0';
     substituate(expr, base, new_base);
-    free(new_base);
     remove_space(&expr);
-//    return eval_expr(expr, my_strlen(base));
+    if (check_syntax_error(expr, new_base) == 84)
+        exit(84);
+    free(new_base);
+    return eval_expr(expr, my_strlen(base));
 }

@@ -10,7 +10,7 @@
 #include "bistromatic.h"
 #include "my.h"
 
-static char *get_expr(unsigned int size)
+static char *get_expr(int size)
 {
     char *expr;
 
@@ -49,6 +49,7 @@ static int call_check(char *base, char *operators, int ac, char **av)
     if (check_ops(operators) != 0)
         return 1;
     check_double_op_base(base, operators);
+    return 0;
 }
 
 int main(int ac, char **av)
@@ -62,9 +63,8 @@ int main(int ac, char **av)
 
     if (call_check(base, operators, ac, av) == 1)
         return (84);
-    size = my_getnbr(av[1]);
+    size = my_getnbr(av[3]);
     expr = get_expr(size);
-    my_putstr(expr);
     error = check_only_op_base_in_expr(expr, base, operators);
     if (error != 0)
         return (84);
