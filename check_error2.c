@@ -28,12 +28,11 @@ void check_base(char const *b)
     }
 }
 
-void check_unmatch_parenthesis(char const *str)
+int check_unmatch_parenthesis(char const *str)
 {
     //str needs to be substituate before checking parenthesis
     int op_par_count = 0;
     int cl_par_count = 0;
-
     for (int i = 0; i < my_strlen(str); i++) {
         if (str[i] == 'x')
             op_par_count++;
@@ -42,6 +41,7 @@ void check_unmatch_parenthesis(char const *str)
     }
     if (cl_par_count != op_par_count) {
         my_putstr_error(SYNTAX_ERROR_MSG);
-        exit(84);
+        return (84);
     }
+    return 0;
 }

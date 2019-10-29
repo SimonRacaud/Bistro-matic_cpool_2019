@@ -20,11 +20,9 @@ SRC	=	infinadd/infinadd.c	\
 
 OBJ	=	$(SRC:.c=.o)
 
-CRITERION =	tests/test_add.c	\
-		infinadd/infinadd.c     \
-		infinadd/basic.c        \
-		infinadd/calcul.c       \
-		arithmetic.c
+CRITERION =	tests/test_syntax.c	\
+		check_syntax_error.c	\
+		check_error2.c
 
 OBJ_CRIT =	$(CRITERION:.c=.o)
 
