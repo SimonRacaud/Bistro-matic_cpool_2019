@@ -5,17 +5,17 @@
 ## Project makefile
 ##
 
-CRITERION =	test_sub.c	\
-		../infinadd/infinadd.c     \
-		../infinadd/basic.c        \
-		../infinadd/calcul.c       \
-		../arithmetic.c            \
-		../substituate.c           \
-		../debug_display.c		\
-		test_error.c	\
-		../check_error.c		\
-		../check_error2.c		\
-		test_syntax.c	\
+CRITERION =	test_sub.c		\
+		../infinadd/infinadd.c	\
+		../infinadd/basic.c	\
+		../infinadd/calcul.c	\
+		../arithmetic.c		\
+		../substituate.c	\
+		../debug_display.c	\
+		test_error.c		\
+		../check_error.c	\
+		../check_error2.	\
+		test_syntax.c		\
 		../check_syntax_error.c
 
 OBJ_CRIT =	$(CRITERION:.c=.o)
