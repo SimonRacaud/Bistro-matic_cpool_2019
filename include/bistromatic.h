@@ -27,6 +27,9 @@
 #define SYNTAX_ERROR_MSG "syntax error"
 #define ERROR_MSG        "error"
 
+#define C_IGNORE ' '
+#define FIRST_DIGIT '!'
+
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
