@@ -31,23 +31,32 @@ static char *get_expr(unsigned int size)
     return (expr);
 }
 
+static int check_nb_of_parameter(int ac , char **av)
+{
+    if (ac != 4) {
+        display_usage(av[0]);
+        return (EXIT_USAGE);
+    }
+    return 0;
+}
+
 int main(int ac, char **av)
 {
     unsigned int size;
     char *expr;
     char *base = av[1];
-    char *operators = av[2]
+    char *operators = av[2];
+    int error = 0;
 
-    if (ac != 4) {
-        display_usage(av[0]);
-        return (EXIT_USAGE);
-    }
-    check_base(base);
-    check_ops(operators);
+    check_nb_of_parameter(ac, av);
+    error = check_base(base);
+    error = check_ops(operators);
     check_double_op_base(base, operators);
     size = my_getnbr(av[3]);
     expr = get_expr(size);
-    check_only_op_base_in_expr(expr, base, op);
+    error = check_only_op_base_in_expr(expr, base, op);
+    if (error != 0)
+        exit(84);
     resolve(expr, operators, base);
     /// display_result(result, base, operators);
     free(expr);

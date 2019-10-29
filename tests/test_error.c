@@ -8,16 +8,42 @@
 #include "../include/bistromatic.h"
 #include "../include/my.h"
 #include <criterion/criterion.h>
+#include <criterion/redirect.h>
 
-Test(check_double_op, check_double_base_valid)
+void redirect_all_stdout2(void)
 {
-    printf("criterion est là");
+    cr_redirect_stdout();
+    cr_redirect_stderr();
+}
+
+Test(check_double_op, check_double_base_valid, .init=redirect_all_stdout2)
+{
     char *base = "0123456789";
     char *op = "()+-*/%";
-    char *buf = malloc(sizeof(char) * 86);
-    int a;
+    int error = 0;
 
-    check_double_op(base, op);
-    a = read(0, buf, 86);
-    cr_assert_str_eq(buf, "");
+    error = check_double_op_base(base, op);
+    cr_assert(error == 0);
+}
+
+Test(check_only_op_base_in_expr, check_only_op_base_valid)
+{
+    char *expr = "3x15+16-19";
+    char *op = "()+-x/%";
+    char *base = "0123456789";
+    int error = 0;
+
+    error = check_only_op_base_in_expr(expr, base, op);
+    cr_assert(error == 0);
+}
+
+Test(check_only_op_base_in_expr2, check_only_op_base_error)
+{
+    char *expr = "3xa15+16-19";
+    char *op = "()+-x/%";
+    char *base = "0123456789";
+    int error = 0;
+
+    error = check_only_op_base_in_expr(expr, base, op);
+    cr_assert(error == 84);
 }
