@@ -37,6 +37,7 @@ void check_base(char const *b);
 void check_ops(char const *ops);
 void check_double_op_base(char *base, char *op);
 void check_only_op_base_in_expr(char *expr, char *base, char *op);
+void check_unmatch_parenthesis(char const *str);
 
 void substituate(char *str, char *old, char *new);
 
