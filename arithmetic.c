@@ -5,15 +5,8 @@
 ** Arithmetic operations file
 */
 
-#include <stdlib.h>
 #include "my.h"
-#include <stdio.h>
-
-char *infinadd_base(char *str1, char *str2, int base);
-
-void debug_display(char *str);
-
-void substituate(char *str, char *old, char *new);
+#include "bistromatic.h"
 
 char *add_minus(char *nb, char *neg_nb)
 {
@@ -95,6 +88,8 @@ char *sub(char *a, char *b, int base)
     return result;
 }
 
+
+
 char *mul(char *a, char *b, int base)
 {
     int result_sign = 0;
@@ -119,17 +114,51 @@ char *mul(char *a, char *b, int base)
     return result;
 }
 
+void func(int *values, char **a_and_save, char **res_and_add, char *b_mul_by_10_pow_x)
+{
+    while (my_strcmp(sub("!", a_and_save[0], values[0]), "!") != 0 && a_and_save[0][0] != 123) {
+        a_and_save[1] = my_strdup(a_and_save[0]);
+        a_and_save[0] = infinadd_base(&a_and_save[0][values[1]], b_mul_by_10_pow_x, values[0]);
+        if (my_strcmp(sub("!", a_and_save[0], values[0]), "!") != 0 && a_and_save[0][0] != 123) {
+            res_and_add[0] = infinadd_base(res_and_add[0], res_and_add[1], values[0]);
+            values[1] = 2;
+        } else if (my_strcmp(sub("!", a_and_save[0], values[0]), "!") == 0) {
+            res_and_add[0] = infinadd_base(res_and_add[0], res_and_add[1], values[0]);
+            break;
+        } else
+            break;
+    }
+}
+
+char *make_div(char *a, int base, char *neg_b, int dif_lenght)
+{
+    char *a_save = "";
+    char *add_result = "";
+    char *b_mul_by_10_pow_x = "";
+    int begin = 0;
+    char *result = "!";
+    int values[] = {base, begin};
+    char *a_and_save[] = {a, a_save};
+    char *res_and_add[] = {result, add_result};
+
+    for (int i = dif_lenght; i >= 0; i--) {
+        b_mul_by_10_pow_x = add_zeros(neg_b, b_mul_by_10_pow_x, i);
+        res_and_add[1] = add_zeros("\"", res_and_add[1], i);
+        func(values, a_and_save, res_and_add, b_mul_by_10_pow_x);
+        a_and_save[0] = my_strdup(a_and_save[1]);
+        b_mul_by_10_pow_x = NULL;
+        res_and_add[1] = NULL;
+    }
+    return res_and_add[0];
+}
+
 char *divi(char *a, char *b, int base)
 {
     int result_sign = 0;
     char *result = "!";
     char *neg_result = NULL;
     int dif_lenght = my_strlen(a) - my_strlen(b);
-    char *a_save;
-    char *add_result;
-    char *b_mul_by_10_pow_x;
     char *neg_b = NULL;
-    int var = 0;
 
     if (a[0] == 33) {
         result = malloc(sizeof(char) * 2);
@@ -138,26 +167,7 @@ char *divi(char *a, char *b, int base)
     }
     result_sign = get_result_sign(a, b, result_sign);
     neg_b = add_minus(b, neg_b);
-    for (int i = dif_lenght; i >= 0; i--) {
-        b_mul_by_10_pow_x = add_zeros(neg_b, b_mul_by_10_pow_x, i);
-        add_result = add_zeros("\"", add_result, i);
-        while (my_strcmp(sub("0", a, base), "0") != 0 && a[0] != 123) {
-            a_save = my_strdup(a);
-            a = infinadd_base(&a[var], b_mul_by_10_pow_x, base);
-            if (my_strcmp(sub("0", a, base), "0") != 0 && a[0] != 123) {
-                result = infinadd_base(result, add_result, base);
-                var = 2;
-            } else if (my_strcmp(sub("0", a, base), "0") == 0) {
-                result = infinadd_base(result, add_result, base);
-                break;
-            } else {
-                break;
-            }
-        }
-        a = my_strdup(a_save);
-        b_mul_by_10_pow_x = NULL;
-        add_result = NULL;
-    }
+    result = make_div(a, base, neg_b, dif_lenght);
     if (result_sign == -1) {
         neg_result = add_minus(result, neg_result);
         return neg_result;
