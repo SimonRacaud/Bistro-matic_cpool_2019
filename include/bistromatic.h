@@ -34,7 +34,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-char *eval_expr(char const *expr, char const *base);
+char *eval_expr(char const *str, int base);
 
 int check_base(char const *b);
 int check_ops(char const *ops);
