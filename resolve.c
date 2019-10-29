@@ -32,8 +32,10 @@ char *resolve(char *expr, char *operators, char *base)
     new_base[len] = '\0';
     substituate(expr, base, new_base);
     remove_space(&expr);
-    if (check_syntax_error(expr, new_base) == 84)
+    if (check_syntax_error(expr, new_base) == 84) {
+        my_putstr_error(SYNTAX_ERROR_MSG);
         exit(84);
+    }
     free(new_base);
     return eval_expr(expr, my_strlen(base));
 }
