@@ -16,8 +16,6 @@
 
 #include "bistromatic.h"
 
-char *eval_expr(char const *str, int base);
-
 void move_minus(char *expr_res);
 void combine_operators(char *expr);
 int detect_sign(char *seg, int base);
