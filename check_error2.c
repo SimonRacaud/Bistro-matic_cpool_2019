@@ -43,4 +43,5 @@ int check_unmatch_parenthesis(char const *str)
         my_putstr_error(SYNTAX_ERROR_MSG);
         return (84);
     }
+    return 0;
 }
