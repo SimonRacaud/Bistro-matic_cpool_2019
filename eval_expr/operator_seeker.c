@@ -51,6 +51,7 @@ char *operator_seeker(char *seg, int seg_lenght, int prio, int base)
     int prio_op[2] = {prio, 0};
 
     for (int i = 1; i < seg_lenght - 1; i++) {
+        combine_operators(seg);
         operator = is_operator(seg, i, op_by_priority, prio);
         if (operator > 0 && sig != i) {
             prio_op[1] = operator - 1;

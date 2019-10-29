@@ -22,15 +22,19 @@ void display_result(char *result, char *base, char *operators)
 {
     int len_base = my_strlen(base);
     char *old_base = malloc(sizeof(char) * (len_base + 1));
+    int alpha = 0;
 
-    for (int i = 33; i < len_base + 33; i++) {
+    for (int i = 33; i < len_base + 33; i++)
         old_base[i - 33] = i;
-    }
     old_base[len_base] = '\0';
     substituate(result, old_base, base);
     substituate(result, "xyz{|}~", operators);
     for (int pos = 0; pos < my_strlen(result); pos++) {
-        if (result[pos] != 32)
+        if (result[pos] != ' ' && ((result[pos] == '0' && alpha != 0) ||
+        result[pos] != '0')) {
             my_putchar(result[pos]);
+        }
+        if (result[pos] != ' ' && result[pos] != operators[3])
+            alpha++;
     }
 }
