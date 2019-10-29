@@ -8,6 +8,8 @@
 #include "my.h"
 #include "infinadd.h"
 
+void debug_display(char *str);
+
 void apply_carried_number_add(char *res, int *carriedNum, int *new_cn, int base)
 {
     if (*carriedNum != 0 && (*new_cn != 1 || *carriedNum > 1)) {
@@ -40,14 +42,14 @@ void treat_digit_add(char *res, char **ptr, int *carriedNum, int base)
     apply_carried_number_add(res, carriedNum, &new_carriedNb, base);
 }
 
-void apply_carried_number_sub(char *res, int *carriedNum, int *new_cn)
+void apply_carried_number_sub(char *res, int *carriedNum, int *new_cn, int base)
 {
     if (*carriedNum != 0 && (*new_cn != 1 || *carriedNum > 1)) {
         if (*res - 1 >= DIGIT_START) {
             *res -= 1;
             (*carriedNum)--;
         } else {
-            *res = DIGIT_START;
+            *res = base + 32;
         }
     }
 }
@@ -60,7 +62,6 @@ void treat_digit_sub(char *res, char **ptr, int *carriedNum, int base)
         *res = *ptr[0];
     } else {
         if (*ptr[0] - (*ptr[1] - DIGIT_START) >= DIGIT_START) {
-
             *res = *ptr[0] - (*ptr[1] - DIGIT_START);
         } else {
             *carriedNum += 1;
@@ -68,7 +69,7 @@ void treat_digit_sub(char *res, char **ptr, int *carriedNum, int base)
             *res = base + (*ptr[0] - (*ptr[1] - DIGIT_START));
         }
     }
-    apply_carried_number_sub(res, carriedNum, &new_carriedNb);
+    apply_carried_number_sub(res, carriedNum, &new_carriedNb, base);
 }
 
 void calcul(char *res, char **str, int is_add, int base)
