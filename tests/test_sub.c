@@ -10,6 +10,7 @@
 #include "my.h"
 
 char *sub(char *a, char *b, int base);
+
 void substituate(char *str, char *old, char *new);
 
 Test(sub, sub_zeros)
