@@ -7,59 +7,111 @@
 
 
 #include <criterion/criterion.h>
+#include "my.h"
+
+char *sub(char *a, char *b, int base);
+void substituate(char *str, char *old, char *new);
 
 Test(sub, sub_zeros)
 {
-    char *res = sub("0", "0", 10);
+    char a[] = "0";
+    substituate(a, "0123456789", "!\"#$%&'()*");
+    char b[] = "0";
+    substituate(b, "0123456789", "!\"#$%&'()*");
+    char *res = sub(a, b, 10);
+    substituate(res, "!\"#$%&'()*", "0123456789");
 
-    cr_assert_eq_str(res, "0");
+    cr_assert_str_eq(res, "{0");
+    free(res);
 }
 
 Test(sub, sub_zero_and_number)
 {
-    char *res = sub("0", "3", 10);
+    char a[] = "0";
+    substituate(a, "0123456789", "!\"#$%&'()*");
+    char b[] = "3";
+    substituate(b, "0123456789", "!\"#$%&'()*");
+    char *res = sub(a, b, 10);
+    substituate(res, "!\"#$%&'()*", "0123456789");
 
-    cr_assert_eq_str(res, "-3");
+    cr_assert_str_eq(res, "{ 3");
+    free(res);
 }
 
 Test(sub, sub_small_numbers)
 {
-    char *res = sub("1", "1", 10);
+    char a[] = "1";
+    substituate(a, "0123456789", "!\"#$%&'()*");
+    char b[] = "1";
+    substituate(b, "0123456789", "!\"#$%&'()*");
+    char *res = sub(a, b, 10);
+    substituate(res, "!\"#$%&'()*", "0123456789");
 
-    cr_assert_eq_str(res, "0");
+    cr_assert_str_eq(res, "  0");
+    free(res);
 }
 
 Test(sub, sub_big_numbers)
 {
-    char *res = sub("17465765", "654358", 10);
+    char a[] = "17465765";
+    substituate(a, "0123456789", "!\"#$%&'()*");
+    char b[] = "654358";
+    substituate(b, "0123456789", "!\"#$%&'()*");
+    char *res = sub(a, b, 10);
+    substituate(res, "!\"#$%&'()*", "0123456789");
 
-    cr_assert_eq_str(res, "16811407");
+    cr_assert_str_eq(res, "  16811407");
+    free(res);
 }
 
 Test(sub, sub_large_numbers)
 {
-    char *res = sub("123456789123456789", "234567892345678923456789", 10);
+    char a[] = "123456789123456789";
+    substituate(a, "0123456789", "!\"#$%&'()*");
+    char b[] = "234567892345678923456789";
+    substituate(b, "0123456789", "!\"#$%&'()*");
+    char *res = sub(a, b, 10);
+    substituate(res, "!\"#$%&'()*", "0123456789");
 
-    cr_assert_eq_str(res, "-234567768888889800000000");
+    cr_assert_str_eq(res, "{ 234567768888889800000000");
+    free(res);
 }
 
 Test(sub, sub_negative_numbers)
 {
-    char *res = sub("-600", "-700", 10);
+    char a[] = "{600";
+    substituate(a, "0123456789", "!\"#$%&'()*");
+    char b[] = "{700";
+    substituate(b, "0123456789", "!\"#$%&'()*");
+    char *res = sub(a, b, 10);
+    substituate(res, "!\"#$%&'()*", "0123456789");
 
-    cr_assert_eq_str(res, "100");
+    cr_assert_str_eq(res, "  100");
+    free(res);
 }
 
 Test(sub, sub_positive_and_negative_numbers1)
 {
-    char *res = sub("-600", "700", 10);
+    char a[] = "{600";
+    substituate(a, "0123456789", "!\"#$%&'()*");
+    char b[] = "700";
+    substituate(b, "0123456789", "!\"#$%&'()*");
+    char *res = sub(a, b, 10);
+    substituate(res, "!\"#$%&'()*", "0123456789");
 
-    cr_assert_eq_str(res, "-1300");
+    cr_assert_str_eq(res, "{1300");
+    free(res);
 }
 
 Test(sub, sub_positive_and_negative_numbers2)
 {
-    char *res = sub("600", "-700", 10);
+    char a[] = "600";
+    substituate(a, "0123456789", "!\"#$%&'()*");
+    char b[] = "{700";
+    substituate(b, "0123456789", "!\"#$%&'()*");
+    char *res = sub(a, b, 10);
+    substituate(res, "!\"#$%&'()*", "0123456789");
 
-    cr_assert_eq_str(res, "1300");
+    cr_assert_str_eq(res, " 1300");
+    free(res);
 }

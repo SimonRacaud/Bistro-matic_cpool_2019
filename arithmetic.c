@@ -10,13 +10,15 @@
 
 char *infinadd_base(char *str1, char *str2, int base);
 
+void debug_display(char *str);
+
 char *add_minus(char *nb, char *neg_nb)
 {
     neg_nb = malloc(sizeof(char) * (my_strlen(nb) + 2));
     neg_nb[my_strlen(nb) + 1] = '\0';
     for (int i = my_strlen(nb); i > 0; i--)
         neg_nb[i] = nb[i - 1];
-    neg_nb[0] = '-';
+    neg_nb[0] = 123;
     return neg_nb;
 }
 
@@ -24,11 +26,11 @@ int get_result_sign(char *a, char *b, int result_sign)
 {
     int nb_neg = 0;
 
-    if (a[0] == '-') {
+    if (a[0] == 123) {
         for (int i = 0; i < my_strlen(a); i++)
             a[i] = a[i + 1];
         nb_neg++;
-    } else if (b[0] == '-') {
+    } else if (b[0] == 123) {
         for (int i = 0; i < my_strlen(b); i++)
             b[i] = b[i + 1];
         nb_neg++;
@@ -40,12 +42,14 @@ int get_result_sign(char *a, char *b, int result_sign)
 
 char *add_zeros(char *nb, char *result, int pow_x)
 {
-    result = malloc(sizeof(char) * (my_strlen(nb) + pow_x));
-    result[my_strlen(nb) + pow_x - 1] = '\0';
-    for (int j = 0; j < my_strlen(nb); j++)
+    result = malloc(sizeof(char) * (my_strlen(nb) + pow_x + 1));
+    result[my_strlen(nb) + pow_x] = '\0';
+    for (int j = 0; j < my_strlen(nb); j++) {
         result[j] = nb[j];
-    for (int k = 0; k < pow_x; k++)
-        result[my_strlen(nb) + k] = '0';
+    }
+    for (int k = 0; k < pow_x; k++) {
+        result[my_strlen(nb) + k] = 33;
+    }
     return result;
 }
 
@@ -54,11 +58,21 @@ char *make_mul(char *a, char *b, char *result, int base)
     char *a_mul_by_10_pow_x;
 
     for (int i = 0; i < my_strlen(b); i++) {
-        a_mul_by_10_pow_x = add_zeros(a, a_mul_by_10_pow_x, my_strlen(b) - i);
-        for (int l = 0; l < b[i] - 48; l++)
+        a_mul_by_10_pow_x = add_zeros(a, a_mul_by_10_pow_x, my_strlen(b) - i - 1);
+        printf("@@@@@\n@@@@@\n@@@@@\n@@@@@\n\n");
+        for (int l = 0; l < b[i] - 33; l++) {
+            printf("CALCUL = \n");
+            debug_display(result);
+            printf("  +  \n");
+            debug_display(a_mul_by_10_pow_x);
+            printf("  =  \n");
             result = infinadd_base(result, a_mul_by_10_pow_x, base);
+            debug_display(result);
+            printf("\n\n");
+        }
         a_mul_by_10_pow_x = NULL;
     }
+    free(a_mul_by_10_pow_x);
     return result;
 }
 
@@ -66,9 +80,6 @@ char *add(char *a, char *b, int base)
 {
     char *result = infinadd_base(a, b, base);
 
-    printf("RESULT = %s\n", result);
-    printf("A = %s\n", a);
-    printf("B = %s\n", b);
     return result;
 }
 
@@ -77,8 +88,8 @@ char *sub(char *a, char *b, int base)
     char *result;
     char *neg_b = NULL;
 
-    if (b[0] == '-') {
-        b[0] = '0';
+    if (b[0] == 123) {
+        b[0] = 33;
         result = infinadd_base(a, b, base);
     } else {
         neg_b = add_minus(b, neg_b);
@@ -90,12 +101,17 @@ char *sub(char *a, char *b, int base)
 char *mul(char *a, char *b, int base)
 {
     int result_sign = 0;
-    char *result = NULL;
+    char *result = "!";
     char *neg_result = NULL;
     char *dif = sub(a, b, base);
 
+    if (a[0] == 33 || b[0] == 33) {
+        result = malloc(sizeof(char) * 2);
+        result = "0";
+        return result;
+    }
     result_sign = get_result_sign(a, b, result_sign);
-    if (dif[0] == '-')
+    if (dif[0] == 123)
         result = make_mul(b, a, result, base);
     else
         result = make_mul(a, b, result, base);
@@ -103,6 +119,9 @@ char *mul(char *a, char *b, int base)
         neg_result = add_minus(result, neg_result);
         return neg_result;
     }
+    //printf("RESULT = [%s]\n", result);
+    //printf("X = [%d]\n", result[0]);
+    printf("D0 : %d\n", dif[0]);
     return result;
 }
 
@@ -120,13 +139,13 @@ char *divi(char *a, char *b, int base)
     b = sub(0, b, base);
     for (int i = dif_lenght; i >= 0; i--) {
         b_mul_by_10_pow_x = add_zeros(b, b_mul_by_10_pow_x, i);
-        add_result = add_zeros("1", add_result, i);
-        while (a[0] != '0' && a[0] != '-') {
+        add_result = add_zeros("\"", add_result, i);
+        while (a[0] != 33 && a[0] != 123) {
             a_save = my_strcpy(a_save, a);
             a = infinadd_base(a, b_mul_by_10_pow_x, base);
-            if (a[0] != '0' && a[0] != '-') {
+            if (a[0] != 33 && a[0] != 123) {
                 result = infinadd_base(result, add_result, base);
-            } else if (a[0] != '0') {
+            } else if (a[0] != 33) {
                 result = infinadd_base(result, add_result, base);
                 break;
             }
@@ -148,7 +167,7 @@ char *mod(char *a, char *b, int base)
     char *result;
     char *neg_result = NULL;
 
-    if (a[0] == '-' && b[0] == '-')
+    if (a[0] == 123 && b[0] == 123)
         result_sign = -1;
     result_sign = get_result_sign(a, b, result_sign);
     result = sub(a, divi(a, b, base), base);
