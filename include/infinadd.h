@@ -21,7 +21,8 @@ int is_pos_num(char c, int base);
 void apply_carried_number_add(char *res, int *carriedNum, int *new_cn,
 int base);
 void treat_digit_add(char *res, char **ptr, int *carriedNum, int base);
-void apply_carried_number_sub(char *res, int *carriedNum, int *new_cn, int base);
+void apply_carried_number_sub(char *res, int *carriedNum, int *new_cn,
+int base);
 void treat_digit_sub(char *res, char **ptr, int *carriedNum, int base);
 void calcul(char *res, char **str, int is_add, int base);
 

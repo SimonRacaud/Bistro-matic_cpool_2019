@@ -6,8 +6,7 @@
 */
 
 #include  <criterion/criterion.h>
-
-char *infinadd_base(char *str1, char *str2, int base);
+#include "bistromatic.h"
 
 Test(infinadd_base, test1)
 {

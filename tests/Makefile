@@ -20,7 +20,6 @@ CRITERION =	test_sub.c		\
 		test_error.c		\
 		../check_error.c	\
 		../check_error2.c	\
-		test_syntax.c		\
 		../check_syntax_error.c	\
 		../resolve.c		\
 		test_space.c		\
@@ -29,6 +28,7 @@ CRITERION =	test_sub.c		\
 		../eval_expr/operator_seeker.c		\
 		../eval_expr/make_operation.c		\
 		../eval_expr/combine_operators.c	\
+		test_compute.c				\
 		../compute.c				\
 		../compute_ext.c
 

@@ -7,6 +7,7 @@
 
 
 #include <criterion/criterion.h>
+#include "bistromatic.h"
 
 Test(substitution, replace_numbers)
 {

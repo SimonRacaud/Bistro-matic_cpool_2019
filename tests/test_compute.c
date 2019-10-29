@@ -7,18 +7,17 @@
 
 
 #include <criterion/criterion.h>
+#include "bistromatic.h"
 
-char *compute(char *operation, int base);
-
-Test(compute, add_zeros)
+Test(compute, simple_sub)
 {
     char eq[] = "! { !";
     compute(eq, 10);
 
-    cr_assert_str_eq(eq, "!    ");
+    cr_assert_str_eq(eq, "{!   ");
 }
 
-Test(compute, add_zero_and_number)
+Test(compute, simple_add)
 {
     char eq[] = "{$ z !";
     compute(eq, 10);
@@ -26,24 +25,15 @@ Test(compute, add_zero_and_number)
     cr_assert_str_eq(eq, "{ $   ");
 }
 
-Test(compute, add_small_numbers)
+Test(compute, add_two_pos_nb)
 {
     char eq[] = "\"z\"";
 
     compute(eq, 10);
     cr_assert_str_eq(eq, "#  ");
 }
-/*
-Test(compute, add_big_numbers)
-{
-    char eq[] = "17465765+654358";
-    compute(eq, 10);
 
-    cr_assert_str_eq(eq, "18120123       ");
-}
-*/
-
-Test(compute, add_negative_numbers)
+Test(compute, add_two_neg_nb)
 {
     char eq[] = "{\"z{\"";
 
@@ -51,15 +41,15 @@ Test(compute, add_negative_numbers)
     cr_assert_str_eq(eq, "{ #  ");
 }
 
-Test(compute, add_positive_and_negative_numbers1)
+Test(compute, add_neg_and_pos_nb1)
 {
     char eq[] = "{\" z \"";
 
     compute(eq, 10);
-    cr_assert_str_eq(eq, "!      ");
+    cr_assert_str_eq(eq, "{ !   ");
 }
 
-Test(compute, add_positive_and_negative_numbers2)
+Test(compute, add_neg_and_pos_nb2)
 {
     char eq[] = "\"z{\"";
 
