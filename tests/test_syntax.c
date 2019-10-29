@@ -112,3 +112,29 @@ Test(check_syntax_error11, check_op_at_the_end, .init=redirect_all_stdout)
     check_syntax_error(expr, base);
     cr_assert_stderr_eq_str("syntax error", "");
 }
+Test(check_syntax_error11, check_empty_par, .init=redirect_all_stdout)
+{
+    char *expr = "4|xy";
+    char *base = "0123456789";
+
+    check_syntax_error(expr, base);
+    cr_assert_stderr_eq_str("syntax error", "");
+}
+
+Test(check_syntax_error11, check_op_misplaced2, .init=redirect_all_stdout)
+{
+    char *expr = "4|x4zy";
+    char *base = "0123456789";
+
+    check_syntax_error(expr, base);
+    cr_assert_stderr_eq_str("syntax error", "");
+}
+
+Test(check_syntax_error11, check_op_misplaced3, .init=redirect_all_stdout)
+{
+    char *expr = "4|xz56y";
+    char *base = "0123456789";
+
+    check_syntax_error(expr, base);
+    cr_assert_stderr_eq_str("syntax error", "");
+}

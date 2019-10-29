@@ -7,6 +7,11 @@
 
 #include "my.h"
 #include "bistromatic.h"
+#include <stdio.h>
+
+char *infinadd_base(char *str1, char *str2, int base);
+
+void substituate(char *str, char *old, char *new);
 
 char *add_minus(char *nb, char *neg_nb)
 {

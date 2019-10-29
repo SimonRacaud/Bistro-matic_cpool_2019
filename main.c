@@ -40,6 +40,17 @@ static int check_nb_of_parameter(int ac , char **av)
     return 0;
 }
 
+static int call_check(char *base, char *operators, int ac, char **av)
+{
+    if (check_nb_of_parameter(ac, av) == 84)
+        return 1;
+    if (check_base(base) != 0)
+        return 1;
+    if (check_ops(operators) != 0)
+        return 1;
+    check_double_op_base(base, operators);
+}
+
 int main(int ac, char **av)
 {
     unsigned int size;
@@ -47,18 +58,18 @@ int main(int ac, char **av)
     char *base = av[1];
     char *operators = av[2];
     int error = 0;
+    char *result;
 
-    check_nb_of_parameter(ac, av);
-    error = check_base(base);
-    error = check_ops(operators);
-    check_double_op_base(base, operators);
-    size = my_getnbr(av[3]);
+    if (call_check(base, operators, ac, av) == 1)
+        return (84);
+    size = my_getnbr(av[1]);
     expr = get_expr(size);
-    error = check_only_op_base_in_expr(expr, base, op);
+    my_putstr(expr);
+    error = check_only_op_base_in_expr(expr, base, operators);
     if (error != 0)
-        exit(84);
-    resolve(expr, operators, base);
-    /// display_result(result, base, operators);
+        return (84);
+    result = resolve(expr, operators, base);
+    display_result(result, base);
     free(expr);
     return (EXIT_SUCCESS);
 }
