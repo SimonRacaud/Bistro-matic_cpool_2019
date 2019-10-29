@@ -14,6 +14,7 @@ int check_ops(char const *ops)
         my_putstr_error(SYNTAX_ERROR_MSG);
         return (EXIT_OPS);
     }
+    return 0;
 }
 
 int check_base(char const *b)
@@ -26,6 +27,7 @@ int check_base(char const *b)
         my_putstr_error(SYNTAX_ERROR_MSG);
         return (EXIT_BASE);
     }
+    return 0;
 }
 
 int check_unmatch_parenthesis(char const *str)

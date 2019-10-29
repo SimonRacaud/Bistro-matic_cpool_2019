@@ -24,6 +24,7 @@ static int check_if_op_has_num(char const *expr, int i)
             return (84);
         }
     }
+    return 0;
 }
 
 static int check_if_next_is_op(char const *expr, int i)
@@ -43,6 +44,7 @@ static int check_if_next_is_op(char const *expr, int i)
         my_putstr_error(SYNTAX_ERROR_MSG);
         return (84);
     }
+    return 0;
 }
 
 int check_syntax_error(char const *expr, char const *base)

@@ -31,6 +31,7 @@ static int base_eq_op(char b, char o)
         my_putstr_error("Base digits should not be equals to operators\n"); //debug
         return (84);
     }
+    return 0;
 }
 
 int check_double_op_base(char *base, char *op)
