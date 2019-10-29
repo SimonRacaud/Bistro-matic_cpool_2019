@@ -18,7 +18,7 @@ void display_usage(char *program_name)
     my_putstr("operators\n- size_read: number of characters to be read\n");
 }
 
-void display_result(char *result, char *base)
+void display_result(char *result, char *base, char *operators)
 {
     int len_base = my_strlen(base);
     char *old_base = malloc(sizeof(char) * (len_base + 1));
@@ -28,9 +28,9 @@ void display_result(char *result, char *base)
     }
     old_base[len_base] = '\0';
     substituate(result, old_base, base);
+    substituate(result, "xyz{|}~", operators);
     for (int pos = 0; pos < my_strlen(result); pos++) {
         if (result[pos] != 32)
             my_putchar(result[pos]);
     }
-    my_putchar('\n');
 }
