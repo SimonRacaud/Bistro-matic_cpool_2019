@@ -48,8 +48,6 @@ char *infinadd_base(char *str1, char *str2, int base)
     char *str[2] = {str1, str2};
     char *str_rev[2] = {str2, str1};
 
-    //debug_display(str1);
-    //debug_display(str2);
     if (res == NULL) {
         write(2, MY_ERROR_MSG, 6);
         exit(84);
@@ -63,7 +61,5 @@ char *infinadd_base(char *str1, char *str2, int base)
         calcul(res, str, 1, base);
     if (res[my_strlen(res) - 1] == C_IGNORE)
         res[my_strlen(res) - 1] = DIGIT_START;
-    printf("V === [%c] === [%d]\n", res[9], res[9]);
-    debug_display(res);
     return (res);
 }

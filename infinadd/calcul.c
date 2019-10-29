@@ -7,6 +7,7 @@
 
 #include "my.h"
 #include "infinadd.h"
+#include <stdio.h>
 
 void apply_carried_number_add(char *res, int *carriedNum, int *new_cn, int base)
 {
@@ -60,6 +61,7 @@ void treat_digit_sub(char *res, char **ptr, int *carriedNum, int base)
         *res = *ptr[0];
     } else {
         if (*ptr[0] - (*ptr[1] - DIGIT_START) >= DIGIT_START) {
+
             *res = *ptr[0] - (*ptr[1] - DIGIT_START);
         } else {
             *carriedNum += 1;
@@ -83,8 +85,8 @@ void calcul(char *res, char **str, int is_add, int base)
             treat_digit_add(&res[longestNb - i + 1], cur, &carriedNum, base);
         else
             treat_digit_sub(&res[longestNb - i + 1], cur, &carriedNum, base);
-        cur[0] < str[0] ? cur[0] = &out : cur[0]--;
-        cur[1] < str[1] ? cur[1] = &out : cur[1]--;
+        cur[0] <= str[0] || cur[0] == &out ? cur[0] = &out : cur[0]--;
+        cur[1] <= str[1] || cur[1] == &out ? cur[1] = &out : cur[1]--;
     }
     if (carriedNum != 0)
         res[1] = DIGIT_START + 1;

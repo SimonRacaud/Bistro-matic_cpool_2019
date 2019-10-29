@@ -7,6 +7,7 @@
 
 #include "my.h"
 #include "infinadd.h"
+#include <stdio.h>
 
 static int my_strlen_num(char const *str, int base);
 
@@ -42,6 +43,8 @@ char *smaller_nb(char *str1, char *str2, int base)
 
 int is_pos_num(char c, int base)
 {
+    //printf("BASE = [%d]\n", base);
+    //printf("C = [%d]\n", c);
     if (c <= DIGIT_START + (base - 1) && c > DIGIT_START)
         return (1);
     return (0);
