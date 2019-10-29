@@ -8,6 +8,11 @@
 SRC	=	infinadd/infinadd.c	\
 		infinadd/basic.c	\
 		infinadd/calcul.c	\
+		eval_expr/eval_expr.c	\
+		eval_expr/parenthesis_seeker.c	\
+		eval_expr/operator_seeker.c	\
+		eval_expr/make_operation.c	\
+		eval_expr/combine_operators.c	\
 		arithmetic.c		\
 		check_error.c		\
 		compute.c		\
@@ -16,7 +21,8 @@ SRC	=	infinadd/infinadd.c	\
 		resolve.c		\
 		debug_display.c		\
 		main.c			\
-		check_error2.c
+		check_error2.c		\
+		check_syntax_error.c
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -24,9 +30,19 @@ CRITERION =	tests/test_sub.c	\
 		infinadd/infinadd.c     \
 		infinadd/basic.c        \
 		infinadd/calcul.c       \
+		eval_expr/eval_expr.c	\
+		eval_expr/parenthesis_seeker.c	\
+		eval_expr/operator_seeker.c	\
+		eval_expr/make_operation.c	\
+		eval_expr/combine_operators.c	\
 		arithmetic.c            \
 		substituate.c           \
-		debug_display.c
+		debug_display.c		\
+		tests/test_error.c	\
+		check_error.c		\
+		check_error2.c		\
+		tests/test_syntax.c	\
+		check_syntax_error.c
 
 OBJ_CRIT =	$(CRITERION:.c=.o)
 
