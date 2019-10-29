@@ -29,11 +29,11 @@ static int base_eq_op(char b, char o)
 {
     if (b == o) {
         my_putstr_error("Base digits should not be equals to operators\n"); //debug
-        exit(84);
+        return (84);
     }
 }
 
-void check_double_op_base(char *base, char *op)
+int check_double_op_base(char *base, char *op)
 {
     char *base_stock = base;
     char *op_stock = op;
@@ -46,7 +46,7 @@ void check_double_op_base(char *base, char *op)
             error += double_op_error(op, op_stock, i, y);
         if (error > 0) {
             my_putstr_error(SYNTAX_ERROR_MSG);
-            exit(EXIT_BASE);
+            return (EXIT_BASE);
         }
     }
     for (int i = 0; i < my_strlen(base); i++) {
@@ -54,9 +54,10 @@ void check_double_op_base(char *base, char *op)
             base_eq_op(base[i], op[y]);
         }
     }
+    return 0;
 }
 
-void check_only_op_base_in_expr(char *expr, char *base, char *op)
+int check_only_op_base_in_expr(char *expr, char *base, char *op)
 {
     int i = -1;
     char search[2] = {0, 0};
@@ -68,6 +69,7 @@ void check_only_op_base_in_expr(char *expr, char *base, char *op)
         if (my_strstr(op, search) != NULL)
             continue;
         my_putstr_error(SYNTAX_ERROR_MSG);
-        exit(84);
+        return (84);
     }
+    return 0;
 }

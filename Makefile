@@ -16,7 +16,8 @@ SRC	=	infinadd/infinadd.c	\
 		resolve.c		\
 		debug_display.c		\
 		main.c			\
-		check_error2.c
+		check_error2.c		\
+		check_syntax_error.c
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -26,7 +27,12 @@ CRITERION =	tests/test_sub.c	\
 		infinadd/calcul.c       \
 		arithmetic.c            \
 		substituate.c           \
-		debug_display.c
+		debug_display.c		\
+		tests/test_error.c	\
+		check_error.c		\
+		check_error2.c		\
+		tests/test_syntax.c	\
+		check_syntax_error.c
 
 OBJ_CRIT =	$(CRITERION:.c=.o)
 

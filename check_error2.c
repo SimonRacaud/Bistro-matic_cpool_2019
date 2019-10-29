@@ -8,23 +8,23 @@
 #include "my.h"
 #include "bistromatic.h"
 
-void check_ops(char const *ops)
+int check_ops(char const *ops)
 {
     if (my_strlen(ops) != 7) {
         my_putstr_error(SYNTAX_ERROR_MSG);
-        exit(EXIT_OPS);
+        return (EXIT_OPS);
     }
 }
 
-void check_base(char const *b)
+int check_base(char const *b)
 {
     if (my_strlen(b) < 2) {
         my_putstr_error(SYNTAX_ERROR_MSG);
-        exit(EXIT_BASE);
+        return (EXIT_BASE);
     }
     if (my_strlen(b) > 86) {
         my_putstr_error(SYNTAX_ERROR_MSG);
-        exit(EXIT_BASE);
+        return (EXIT_BASE);
     }
 }
 
