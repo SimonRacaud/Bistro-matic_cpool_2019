@@ -14,7 +14,7 @@ void remove_space(char **str)
     int pos = 0;
 
     for (int i = 0; i < my_strlen(*str); i++) {
-        if((*str)[i] != ' ') {
+        if ((*str)[i] != ' ') {
             tmp[pos++] = (*str)[i];
         }
     }
