@@ -69,7 +69,7 @@ int main(int ac, char **av)
     if (error != 0)
         return (84);
     result = resolve(expr, operators, base);
-    display_result(result, base);
+    display_result(result, base, operators);
     free(expr);
     return (EXIT_SUCCESS);
 }
