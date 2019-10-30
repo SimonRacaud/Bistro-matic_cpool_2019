@@ -72,5 +72,6 @@ int main(int ac, char **av)
     result = resolve(expr, operators, base);
     display_result(result, base, operators);
     free(expr);
+    free(result);
     return (EXIT_SUCCESS);
 }
