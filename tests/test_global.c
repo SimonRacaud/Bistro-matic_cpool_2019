@@ -131,7 +131,7 @@ Test(global7, simple_calc_sub_0 , .init = redirect_all_stdout3)
     char *av[4] = {"./", base, op, "8"};
 
     bistro(4, av, expr);
-    cr_assert_stdout_eq_str("-0");
+    cr_assert_stdout_eq_str("0");
 }
 
 Test(global8, simple_calc_div_norest , .init = redirect_all_stdout3)
