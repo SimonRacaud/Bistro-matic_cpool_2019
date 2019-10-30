@@ -31,7 +31,10 @@ CRITERION =	tests/test_sub.c                        \
                 tests/test_compute.c			\
                 compute.c				\
                 compute_ext.c                           \
-                tests/test_syntax.c
+                tests/test_syntax.c			\
+		tests/test_global.c			\
+		debug_display.c				\
+		display.c
 
 OBJ_CRIT =	$(CRITERION:.c=.o)
 
@@ -52,6 +55,9 @@ clean:
 	rm -f $(OBJ_CRIT)
 	rm -f $(CRITERION_NAME)
 	rm -f tests/*.gc*
+	rm -f *.gc*
+	rm -f infinadd/*.gc*
+	rm -f eval_expr/*.gc*
 
 fclean:	clean
 	make -C lib/my fclean
