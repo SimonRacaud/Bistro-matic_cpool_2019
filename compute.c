@@ -96,8 +96,11 @@ char *compute(char *operation, int base)
     check_mod_divi_by_zero(beta, idx_op, base);
     remove_minus_zero(alpha, base);
     result = op[idx_op](alpha, beta, base);
-    write_result(operation, result, base);
-    free(result);
+    if (result != NULL) {
+        write_result(operation, result, base);
+        free(result);
+    } else
+        write_result(operation, "!", base);
     free(alpha);
     free(beta);
     return (operation);

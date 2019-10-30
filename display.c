@@ -40,4 +40,5 @@ void display_result(char *res, char *base, char *op)
             alpha++;
         }
     }
+    free(old_base);
 }
