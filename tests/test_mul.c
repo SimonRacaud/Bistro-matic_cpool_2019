@@ -74,7 +74,8 @@ Test(mul, mul_large_numbers)
     substituate(b, "0123456789", "!\"#$%&'()*");
     res = mul(a, b, 10);
     substituate(res, "!\"#$%&'()*", "0123456789");
-    cr_assert_str_eq(res, "  1534910957355803524493640880181591675863735390542006");
+    cr_assert_str_eq(res,
+    "  1534910957355803524493640880181591675863735390542006");
     free(res);
 }
 

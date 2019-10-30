@@ -16,7 +16,7 @@ void redirect_all_stdout2(void)
     cr_redirect_stderr();
 }
 
-Test(check_double_op, check_double_base_valid, .init=redirect_all_stdout2)
+Test(check_double_op, check_double_base_valid, .init = redirect_all_stdout2)
 {
     char *base = "0123456789";
     char *op = "()+-*/%";

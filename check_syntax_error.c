@@ -18,7 +18,7 @@ static int check_if_op_has_num(char const *expr, int i)
             return (84);
         }
         if (i != 0 && (expr[i + 1] == 'y' ||
-                       (expr[i - 1] == 'x' && expr[i] >= 124))) {
+        (expr[i - 1] == 'x' && expr[i] >= 124))) {
             return (84);
         }
     }
@@ -32,7 +32,7 @@ static int check_if_next_is_op(char const *expr, int i)
         return (84);
     }
     if ((expr[i] == 'y') &&
-        (expr[i + 1] >= 33 && expr[i + 1] <= 119)) {
+    (expr[i + 1] >= 33 && expr[i + 1] <= 119)) {
         return (84);
     }
     if (expr[i] == 'x' && expr[i + 1] == 'y') {
@@ -49,7 +49,7 @@ int check_syntax_error(char const *expr, char const *base)
     int error = 0;
     for (int i = 0; i < my_strlen(expr) && expr[i] != '\0'; i++) {
         if ((expr[i] >= 124 && expr[i] <= 126) &&
-            (expr[i + 1] >= 124 && expr[i + 1] <= 126)) {
+        (expr[i + 1] >= 124 && expr[i + 1] <= 126)) {
             error += 84;
         }
         if ((expr[i] == '~' || expr[i] == '}') && expr[i + 1] == base[0]) {

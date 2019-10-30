@@ -47,14 +47,12 @@ int bistro(int ac, char **av, char *expr)
     char *result;
 
     if (call_check(base, operators, ac, av) == 1)
-      return (84);
+        return (84);
     error = check_only_op_base_in_expr(expr, base, operators);
     if (error != 0)
         return (84);
-    printf("expr : %s | ops : %s | base : %s", expr, operators, base);
     result = resolve(expr, operators, base);
     display_result(result, base, operators);
-//    free(expr);
     return (EXIT_SUCCESS);
 }
 
