@@ -5,7 +5,6 @@
 ** Task06
 */
 
-
 void my_swap(int *a, int *b);
 static void swap_if_greater(int *array, int i, char *is_sorted);
 

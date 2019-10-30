@@ -16,6 +16,10 @@ static int len_nbr_str(char *str, int base)
     int alpha = 0;
 
     while (str[++i] != '\0') {
+        if ((str[i] == 'z' && !alpha) || (len && !alpha && str[i] == ' ')) {
+            len++;
+            continue;
+        }
         if ((str[i] == '{' && !alpha) || (len && !alpha && str[i] == ' ')) {
             len++;
             continue;

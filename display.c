@@ -18,6 +18,24 @@ void display_usage(char *program_name)
     my_putstr("operators\n- size_read: number of characters to be read\n");
 }
 
+static void remove_minus_for_zero(char *res, int base)
+{
+    int digit_pos = 0;
+    int i = -1;
+
+    while (res[++i] != '\0') {
+        if (res[i] > 33 && res[i] <= 33 + (base - 1))
+            digit_pos++;
+    }
+    if (digit_pos)
+        return;
+    i = -1;
+    while (res[++i] != '\0') {
+        if (res[i] == '{')
+            res[i] = C_IGNORE;
+    }
+}
+
 void display_result(char *res, char *base, char *op)
 {
     int len_base = my_strlen(base);
@@ -27,18 +45,17 @@ void display_result(char *res, char *base, char *op)
     for (int i = 33; i < len_base + 33; i++)
         old_base[i - 33] = i;
     old_base[len_base] = '\0';
+    remove_minus_for_zero(res, len_base);
     substituate(res, "xyz{|}~", op);
     substituate(res, old_base, base);
     for (int pos = 0; pos < my_strlen(res); pos++) {
         if (res[pos] != ' ' && ((res[pos] == base[0] && alpha != 0) ||
-                                res[pos] != base[0])) {
+        res[pos] != base[0])) {
             my_putchar(res[pos]);
-        } else if (pos == my_strlen(res) - 1 && alpha == 0) {
+        } else if (pos == my_strlen(res) - 1 && alpha == 0)
             my_putchar(base[0]);
-        }
-        if (res[pos] != ' ' && res[pos] != op[3] && res[pos] != base[0]) {
+        if (res[pos] != ' ' && res[pos] != op[3] && res[pos] != base[0])
             alpha++;
-        }
     }
     free(old_base);
 }
