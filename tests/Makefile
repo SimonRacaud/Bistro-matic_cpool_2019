@@ -38,7 +38,7 @@ CRITERION_NAME =	unit_tests
 
 LIB	=	libmy.a
 
-CFLAGS	+= -Wall -Wextra -I./../include -g -L../lib/my -lmy
+CFLAGS	+= -Wall -Wextra -I./../include -g -L../lib/my -lmy --coverage
 
 tests_run :	 $(LIB) $(OBJ_CRIT)
 		gcc -o $(CRITERION_NAME) $(OBJ_CRIT) $(CFLAGS) -lcriterion --coverage
