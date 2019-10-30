@@ -27,12 +27,12 @@ void display_result(char *res, char *base, char *op)
     for (int i = 33; i < len_base + 33; i++)
         old_base[i - 33] = i;
     old_base[len_base] = '\0';
-    substituate(res, old_base, base);
     substituate(res, "xyz{|}~", op);
+    substituate(res, old_base, base);
     for (int pos = 0; pos < my_strlen(res); pos++) {
         if (res[pos] != ' ' && ((res[pos] == base[0] && alpha != 0) ||
-        res[pos] != base[0])) {
-                my_putchar(res[pos]);
+                                res[pos] != base[0])) {
+            my_putchar(res[pos]);
         } else if (pos == my_strlen(res) - 1 && alpha == 0) {
             my_putchar(base[0]);
         }

@@ -28,7 +28,7 @@ static int double_op_error(char const *op, char *op_s, int i, int y)
 static int base_eq_op(char b, char o)
 {
     if (b == o) {
-        my_putstr_error("Base digits should not be equals to operators\n"); //debug
+        my_putstr_error(SYNTAX_ERROR_MSG);
         return (84);
     }
     return 0;
