@@ -5,8 +5,8 @@
 ** void
 */
 
-
 void my_putchar(char c);
+
 static int poww3(int x, int n);
 
 int my_put_nbr(int nb)

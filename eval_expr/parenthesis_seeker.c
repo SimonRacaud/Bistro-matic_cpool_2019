@@ -49,10 +49,10 @@ char *parenthesis_seeker(char *str, int base)
             seg = my_strncpy(seg, &str[open_par], seg_lenght);
             seg = operator_seeker(seg, seg_lenght, 0, base);
             str = replace_seg(str, seg, open_par, seg_lenght);
+            free(seg);
             seg = NULL;
             i = -1;
         }
     }
-    free(seg);
     return str;
 }

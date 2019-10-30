@@ -38,6 +38,7 @@ char *sub(char *a, char *b, int base)
         neg_b = add_minus(b, neg_b);
         result = infinadd_base(a, neg_b, base);
     }
+    free(neg_b);
     return result;
 }
 

@@ -6,6 +6,7 @@
 */
 
 int my_strlen(char const *str);
+
 int my_strncmp(char const *s1, char const *s2, int n);
 
 int my_strcmp(char const *s1, char const *s2)
