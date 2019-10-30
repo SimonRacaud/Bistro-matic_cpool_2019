@@ -42,7 +42,7 @@ static char *extract_nbr(char *str, int base)
     nbr[len] = '\0';
     while (str[i] == C_IGNORE) {
         if (str[i] == '\0') {
-            my_putstr_error("Erreur: (debug) extract_nbr=>compute : no nbr\n");
+            my_putstr_error("error");
             exit(84);
         }
         i++;

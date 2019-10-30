@@ -40,6 +40,11 @@ int check_double_op_base(char *base, char *op)
     char *op_stock = op;
     int error = 0;
 
+    for (int i = 0; i < my_strlen(base); i++) {
+        for (int y = 0; y < my_strlen(op); y++) {
+            error += base_eq_op(base[i], op[y]);
+        }
+    }
     for (int i = 0; (i < my_strlen(base) || i < my_strlen(op)); i++) {
         for (int y = i + 1; y < my_strlen(base_stock); y++)
             error += double_base_error(base, base_stock, i, y);
@@ -48,11 +53,6 @@ int check_double_op_base(char *base, char *op)
         if (error > 0) {
             my_putstr_error(SYNTAX_ERROR_MSG);
             return (EXIT_BASE);
-        }
-    }
-    for (int i = 0; i < my_strlen(base); i++) {
-        for (int y = 0; y < my_strlen(op); y++) {
-            base_eq_op(base[i], op[y]);
         }
     }
     return 0;

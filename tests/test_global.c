@@ -41,32 +41,119 @@ static int call_check(char *base, char *operators, int ac, char **av)
 
 int bistro(int ac, char **av, char *expr)
 {
-    int size;
-    //char *expr;
     char *base = av[1];
     char *operators = av[2];
     int error = 0;
     char *result;
 
     if (call_check(base, operators, ac, av) == 1)
-        return (84);
-    //size = my_getnbr(av[3]);
-    //expr = get_expr(size);
+      return (84);
     error = check_only_op_base_in_expr(expr, base, operators);
     if (error != 0)
         return (84);
+    printf("expr : %s | ops : %s | base : %s", expr, operators, base);
     result = resolve(expr, operators, base);
     display_result(result, base, operators);
-    free(expr);
+//    free(expr);
     return (EXIT_SUCCESS);
 }
 
-Test(global, simple_calc, .init=redirect_all_stdout3)
+Test(global, simple_calc , .init = redirect_all_stdout3)
+{
+    char expr[4] = "1+1";
+    char base[11] = "0123456789";
+    char op[8] = "()+-*/%";
+    char *av[4] = {"./", base, op, "3"};
+
+    bistro(4, av, expr);
+    cr_assert_stdout_eq_str("2");
+}
+
+Test(global2, simple_calc_with_keeper, .init = redirect_all_stdout3)
+{
+    char expr[4] = "9+9";
+    char base[11] = "0123456789";
+    char op[8] = "()+-*/%";
+    char *av[4] = {"./", base, op, "3"};
+
+    bistro(4, av, expr);
+    cr_assert_stdout_eq_str("18");
+}
+
+Test(global3, simple_calc_not_enough_param , .init = redirect_all_stdout3)
 {
     int ret;
-    char expr[3] = "1+1";
-    char *av[4] = {"", "0123456789", "()+-*/%", ""};
+    char expr[4] = "1+1";
+    char base[11] = "0123456789";
+    char op[8] = "()+-*/%";
+    char *av[3] = {"./", base, op};
 
-    ret = bistro(4, av, expr);
-    cr_assert_stdout_eq_str(ret, "$");
+    ret = bistro(3, av, expr);
+    cr_assert(ret == 84);
+}
+
+Test(global4, simple_calc_with_par , .init = redirect_all_stdout3)
+{
+    char expr[8] = "3*(3+3)";
+    char base[11] = "0123456789";
+    char op[8] = "()+-*/%";
+    char *av[4] = {"./", base, op, "7"};
+
+    bistro(4, av, expr);
+    cr_assert_stdout_eq_str("18");
+}
+
+Test(global5, simple_calc_combine_op , .init = redirect_all_stdout3)
+{
+    char expr[8] = "----3+3";
+    char base[11] = "0123456789";
+    char op[8] = "()+-*/%";
+    char *av[4] = {"./", base, op, "8"};
+
+    bistro(4, av, expr);
+    cr_assert_stdout_eq_str("6");
+}
+
+Test(global6, simple_calc_just_0 , .init = redirect_all_stdout3)
+{
+    char expr[2] = "0";
+    char base[11] = "0123456789";
+    char op[8] = "()+-*/%";
+    char *av[4] = {"./", base, op, "8"};
+
+    bistro(4, av, expr);
+    cr_assert_stdout_eq_str("0");
+}
+
+Test(global7, simple_calc_sub_0 , .init = redirect_all_stdout3)
+{
+    char expr[7] = "-(1-1)";
+    char base[11] = "0123456789";
+    char op[8] = "()+-*/%";
+    char *av[4] = {"./", base, op, "8"};
+
+    bistro(4, av, expr);
+    cr_assert_stdout_eq_str("-0");
+}
+
+Test(global8, simple_calc_div_norest , .init = redirect_all_stdout3)
+{
+    char expr[5] = "10/2";
+    char base[11] = "0123456789";
+    char op[8] = "()+-*/%";
+    char *av[4] = {"./", base, op, "8"};
+
+    bistro(4, av, expr);
+    cr_assert_stdout_eq_str("5");
+}
+
+Test(global9, complex_calc, .init = redirect_all_stdout3)
+{
+    char expr[49] = "-(12*(13+15/5*(6/(12+14%(30%5+(10*25)-46)+16))))";
+    char base[11] = "0123456789";
+    char op[8] = "()+-*/%";
+    char *av[4] = {"./", base, op, "8"};
+
+    bistro(4, av, expr);
+    cr_assert_stdout_eq_str("-156");
 }

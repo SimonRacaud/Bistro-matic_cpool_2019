@@ -168,3 +168,55 @@ Test(check_syntax_error17, check_too_long_base, .init  =  redirect_all_stdout)
     error = check_base(base);
     cr_assert(error == 84);
 }
+
+Test(check_syntax_error18, check_double_op, .init  =  redirect_all_stdout)
+{
+    char *base = "0123456789";
+    char *op = "((+-*/%";
+
+    cr_assert(check_double_op_base(base, op) == 84);
+}
+
+Test(check_syntax_error19, check_double_base, .init  =  redirect_all_stdout)
+{
+    char *base = "5123456789";
+    char *op = "()+-*/%";
+
+    cr_assert(check_double_op_base(base, op) == 84);
+}
+
+Test(check_syntax_error20, check_double_base_op, .init  =  redirect_all_stdout)
+{
+    char *base = "0123456789";
+    char *op = "()0-*/%";
+
+    cr_assert(check_double_op_base(base, op) == 84);
+}
+
+Test(check_syntax_error21, check_base_op_valid, .init  =  redirect_all_stdout)
+{
+    char *base = "0123456789";
+    char *op = "()+-*/%";
+    int error = check_base(base);
+
+    error += check_ops(op);
+    cr_assert(error == 0);
+}
+
+Test(check_syntax_error22, check_par_nb, .init  =  redirect_all_stdout)
+{
+    char *expr = "4{x5z6y3";
+    char *base = "0123456789";
+    int error = check_syntax_error(expr, base);
+
+    cr_assert(error == 84);
+}
+
+Test(check_syntax_error23, check_par_cl_op, .init  =  redirect_all_stdout)
+{
+    char *expr = "4{x5z6yx3z3y";
+    char *base = "0123456789";
+    int error = check_syntax_error(expr, base);
+
+    cr_assert(error == 84);
+}

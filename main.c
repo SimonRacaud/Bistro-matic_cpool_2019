@@ -48,7 +48,8 @@ static int call_check(char *base, char *operators, int ac, char **av)
         return 1;
     if (check_ops(operators) != 0)
         return 1;
-    check_double_op_base(base, operators);
+    if (check_double_op_base(base, operators) != 0)
+        return 1;
     return 0;
 }
 
