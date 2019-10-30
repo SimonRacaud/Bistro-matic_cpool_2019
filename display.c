@@ -18,7 +18,7 @@ void display_usage(char *program_name)
     my_putstr("operators\n- size_read: number of characters to be read\n");
 }
 
-void display_result(char *result, char *base, char *operators)
+void display_result(char *res, char *base, char *op)
 {
     int len_base = my_strlen(base);
     char *old_base = malloc(sizeof(char) * (len_base + 1));
@@ -27,14 +27,17 @@ void display_result(char *result, char *base, char *operators)
     for (int i = 33; i < len_base + 33; i++)
         old_base[i - 33] = i;
     old_base[len_base] = '\0';
-    substituate(result, old_base, base);
-    substituate(result, "xyz{|}~", operators);
-    for (int pos = 0; pos < my_strlen(result); pos++) {
-        if (result[pos] != ' ' && ((result[pos] == '0' && alpha != 0) ||
-        result[pos] != '0')) {
-            my_putchar(result[pos]);
+    substituate(res, old_base, base);
+    substituate(res, "xyz{|}~", op);
+    for (int pos = 0; pos < my_strlen(res); pos++) {
+        if (res[pos] != ' ' && ((res[pos] == base[0] && alpha != 0) ||
+        res[pos] != base[0])) {
+                my_putchar(res[pos]);
+        } else if (pos == my_strlen(res) - 1 && alpha == 0) {
+            my_putchar(base[0]);
         }
-        if (result[pos] != ' ' && result[pos] != operators[3])
+        if (res[pos] != ' ' && res[pos] != op[3] && res[pos] != base[0]) {
             alpha++;
+        }
     }
 }
