@@ -41,19 +41,19 @@ $(NAME):	$(OBJ) $(LIB)
 	gcc -o $(NAME) $(OBJ) -L./lib/my -lmy
 
 tests_run :
-	make -C ./tests tests_run
+	make -f Makefile_test tests_run
 
 $(LIB) :
 	make -C ./lib/my
 
 clean:
 	make -C ./lib/my clean
-	make -C ./tests clean
+	make -f Makefile_test clean
 	rm -f $(OBJ)
 
 fclean:	clean
 	make -C ./lib/my fclean
-	make -C ./tests fclean
+	make -f Makefile_test fclean
 	rm -f $(NAME)
 
 re:	fclean all
