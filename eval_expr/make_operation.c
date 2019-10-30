@@ -44,12 +44,14 @@ static int opera_len(char *ops, char operator, int base)
     if (sign != 0)
         op_len = sign;
     while (nb_point_bef_op[0] == 1 || nb_point_bef_op[1] == 1 || op == 0) {
+        op_len++;
         if (ops[op_len] == operator) {
             op++;
             nb_point_bef_op[2] = 0;
         }
-        op_len++;
         deter_next_char(nb_point_bef_op, ops, op_len, base);
+        if (op == 2)
+            break;
     }
     return op_len;
 }

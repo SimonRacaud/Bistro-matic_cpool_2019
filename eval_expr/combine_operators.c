@@ -24,7 +24,7 @@ static void check_char(char *ptr, int *count_neg, int *count_symb, int *detect)
     } else if (*count_symb != 0) {
         *detect = 0;
         if (*count_neg % 2 == 0 && *count_symb > 1) {
-            replace_symbols(ptr, *count_symb, C_IGNORE);
+            replace_symbols(ptr, *count_symb, C_PLUS);
         } else if (*count_neg % 2 != 0) {
             replace_symbols(ptr, *count_symb, C_MINUS);
         }
