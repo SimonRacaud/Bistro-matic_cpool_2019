@@ -100,17 +100,18 @@ char *divi(char *a, char *b, int base)
 char *mod(char *a, char *b, int base)
 {
     int result_sign = 0;
-    char *result;
+    char *result = "!";
     char *neg_result = NULL;
+    char *dif = NULL;
 
-    if (a[0] == 33) {
-        result = malloc(sizeof(char) * 2);
-        result = "0";
-        return result;
-    }
     if (a[0] == 123 && b[0] == 123)
         result_sign = -1;
     result_sign = get_result_sign(a, b, result_sign);
+    dif = sub(a, b, base);
+    if (dif[0] == 123) {
+        free(dif);
+        return NULL;
+    }
     result = sub(a, mul(divi(a, b, base), b, base), base);
     if (result_sign == -1) {
         neg_result = add_minus(result, neg_result);

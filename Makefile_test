@@ -42,10 +42,10 @@ CRITERION_NAME =	unit_tests
 
 LIB	=	libmy.a
 
-CFLAGS	+= -Wall -Wextra -I./include -g -L./lib/my -lmy --coverage
+CFLAGS	+= -Wall -Wextra -I./include -g -L./lib/my -lmy -lcriterion --coverage
 
-tests_run :      $(LIB) $(OBJ_CRIT)
-		gcc -o $(CRITERION_NAME) $(OBJ_CRIT) $(CFLAGS) -lcriterion --coverage
+tests_run :     re $(LIB) $(OBJ_CRIT)
+		gcc -o $(CRITERION_NAME) $(OBJ_CRIT) $(CFLAGS)
 		./$(CRITERION_NAME)
 
 $(LIB) :
@@ -55,14 +55,11 @@ clean:
 	rm -f $(OBJ_CRIT)
 	rm -f $(CRITERION_NAME)
 	rm -f tests/*.gc*
-	rm -f *.gc*
-	rm -f infinadd/*.gc*
-	rm -f eval_expr/*.gc*
 
 fclean:	clean
 	make -C lib/my fclean
 	rm -f $(CRITERION_NAME)
 
-re:	fclean all
+re:	fclean
 
 .PHONY :	clean fclean re

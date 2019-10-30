@@ -5,7 +5,6 @@
 ** Test File for the bistromatic
 */
 
-
 #include <criterion/criterion.h>
 #include "my.h"
 #include "bistromatic.h"
