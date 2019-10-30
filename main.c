@@ -55,7 +55,7 @@ static int call_check(char *base, char *operators, int ac, char **av)
 
 int main(int ac, char **av)
 {
-    unsigned int size;
+    int size;
     char *expr;
     char *base = av[1];
     char *operators = av[2];

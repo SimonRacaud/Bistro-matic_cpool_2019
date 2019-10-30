@@ -38,8 +38,9 @@ static int is_operator(char *seg, int i, char **op_by_priority, int prio)
 
 static void increase_begin(char c_seg, int sig, int *begin, int i)
 {
-    if (c_seg != C_IGNORE && sig != i)
+    if (c_seg != C_IGNORE && sig != i) {
         *begin = i + 1;
+    }
 }
 
 char *operator_seeker(char *seg, int seg_lenght, int prio, int base)
