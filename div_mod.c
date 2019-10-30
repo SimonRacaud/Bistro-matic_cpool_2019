@@ -27,8 +27,10 @@ void sub_while_pos(int *val, char **a_n_save, char **res_n_add, char *b_with_z)
     char *a_neg = sub("!", a_n_save[0], val[0]);
 
     while (is_nb_pos(val, a_n_save) == 1) {
-        a_n_save[1] = my_strdup(a_n_save[0]);
-        a_n_save[0] = infinadd_base(&a_n_save[0][val[1]], b_with_z, val[0]);
+        a_n_save[1] = NULL;
+        a_n_save[1] = malloc(sizeof(char) * my_strlen(a_n_save[0]) + 1);
+        a_n_save[1] = my_strcpy(a_n_save[1], a_n_save[0]);
+        a_n_save[0] = infinadd_base(&a_n_save[1][val[1]], b_with_z, val[0]);
         if (is_nb_pos(val, a_n_save) == 1) {
             res_n_add[0] = infinadd_base(res_n_add[0], res_n_add[1], val[0]);
             val[1] = 2;
@@ -40,6 +42,7 @@ void sub_while_pos(int *val, char **a_n_save, char **res_n_add, char *b_with_z)
             free(a_neg);
             break;
         }
+        free(a_n_save[1]);
     }
 }
 
@@ -71,22 +74,25 @@ char *make_div(char *a, int base, char *neg_b, int dif_lenght)
 char *divi(char *a, char *b, int base)
 {
     int result_sign = 0;
-    char *result = NULL;
+    char *result = "!";
     char *neg_result = NULL;
     int dif_lenght = my_strlen(a) - my_strlen(b);
+    char *dif = NULL;
     char *neg_b = NULL;
 
-    if (a[0] == 33) {
-        return result;
-    }
-    result = "!";
     result_sign = get_result_sign(a, b, result_sign);
+    dif = sub(a, b, base);
+    if (dif[0] == 123) {
+        free(dif);
+        return NULL;
+    }
     neg_b = add_minus(b, neg_b);
     result = make_div(a, base, neg_b, dif_lenght);
     if (result_sign == -1) {
         neg_result = add_minus(result, neg_result);
         return neg_result;
     }
+    free(dif);
     free(neg_b);
     return result;
 }
