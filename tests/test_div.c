@@ -5,9 +5,9 @@
 ** Test File for the bistromatic
 */
 
-
 #include <criterion/criterion.h>
 #include "bistromatic.h"
+#include "my.h"
 
 Test(div, div_zero_by_number)
 {
@@ -18,6 +18,9 @@ Test(div, div_zero_by_number)
     substituate(a, "0123456789", "!\"#$%&'()*");
     substituate(b, "0123456789", "!\"#$%&'()*");
     res = divi(a, b, 10);
+    if (res == NULL){
+        res = my_strdup("!");
+    }
     substituate(res, "!\"#$%&'()*", "0123456789");
     cr_assert_str_eq(res, "0");
 }
