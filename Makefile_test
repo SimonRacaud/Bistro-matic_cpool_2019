@@ -51,7 +51,7 @@ $(LIB) :
 clean:
 	rm -f $(OBJ_CRIT)
 	rm -f $(CRITERION_NAME)
-	rm -f *.gc*
+	rm -f tests/*.gc*
 
 fclean:	clean
 	make -C lib/my fclean
