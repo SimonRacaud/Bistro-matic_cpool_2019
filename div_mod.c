@@ -92,11 +92,12 @@ char *mod(char *a, char *b, int base)
     int result_sign = 0;
     char *result = "!";
     char *neg_result = NULL;
-    char *dif = sub(a, b, base);
+    char *dif;
 
     if (a[0] == 123 && b[0] == 123)
         result_sign = -1;
     result_sign = get_result_sign(a, b, result_sign);
+    dif = sub(a, b, base);
     if (is_res_null(a, b, base) == 1 && dif[0] != 123)
         return NULL;
     if (dif[0] != 123) {
@@ -107,5 +108,6 @@ char *mod(char *a, char *b, int base)
         neg_result = add_minus(result, neg_result);
         return neg_result;
     }
+    free(dif);
     return result;
 }
