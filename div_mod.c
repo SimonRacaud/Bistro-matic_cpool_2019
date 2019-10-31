@@ -92,13 +92,18 @@ char *mod(char *a, char *b, int base)
     int result_sign = 0;
     char *result = "!";
     char *neg_result = NULL;
+    char *dif = sub(a, b, base);
 
     if (a[0] == 123 && b[0] == 123)
         result_sign = -1;
     result_sign = get_result_sign(a, b, result_sign);
-    if (is_res_null(a, b, base) == 1)
+    if (is_res_null(a, b, base) == 1 && dif[0] != 123)
         return NULL;
-    result = sub(a, mul(divi(a, b, base), b, base), base);
+    //printf("DIF = %s\n", dif);
+    if (dif[0] != 123) {
+        result = sub(a, mul(divi(a, b, base), b, base), base);
+    } else
+        result = add(a, "!", base);
     if (result_sign == -1) {
         neg_result = add_minus(result, neg_result);
         return neg_result;
