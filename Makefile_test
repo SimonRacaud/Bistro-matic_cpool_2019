@@ -33,7 +33,6 @@ CRITERION =	tests/test_sub.c                        \
                 compute_ext.c                           \
                 tests/test_syntax.c			\
 		tests/test_global.c			\
-		debug_display.c				\
 		display.c
 
 OBJ_CRIT =	$(CRITERION:.c=.o)
