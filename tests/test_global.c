@@ -155,3 +155,25 @@ Test(global9, complex_calc, .init = redirect_all_stdout3)
     bistro(4, av, expr);
     cr_assert_stdout_eq_str("-156");
 }
+
+Test(global10, complex_calc_complex_base_op, .init = redirect_all_stdout3)
+{
+    char expr[13] = "-(e@-(;*!@))";
+    char base[11] = "~^@!;ie& ]";
+    char op[8] = "()+-*/%";
+    char *av[4] = {"./", base, op, "12"};
+
+    bistro(4, av, expr);
+    cr_assert_stdout_eq_str("ee");
+}
+
+Test(global11, simple_calc_large_number, .init = redirect_all_stdout3)
+{
+    char expr[49] = "1654365856552268432465135678635489946534984324+1";
+    char base[11] = "0123456789";
+    char op[8] = "()+-*/%";
+    char *av[4] = {"./", base, op, "12"};
+
+    bistro(4, av, expr);
+    cr_assert_stdout_eq_str("1654365856552268432465135678635489946534984325");
+}
