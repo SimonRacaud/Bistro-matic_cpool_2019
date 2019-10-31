@@ -22,7 +22,6 @@ SRC	=	infinadd/infinadd.c	\
 		display.c		\
 		substituate.c		\
 		resolve.c		\
-		debug_display.c		\
 		main.c			\
 		check_error2.c		\
 		check_syntax_error.c
