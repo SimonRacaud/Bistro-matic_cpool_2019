@@ -112,5 +112,6 @@ NormEZ.rb
 *.gcno
 test_debugdisplay.c
 debug_display.c
+note.txt
 
 # End of https://www.gitignore.io/api/c,emacs
