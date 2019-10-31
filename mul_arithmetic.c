@@ -63,3 +63,17 @@ int is_res_null(char *a, char *b, int base)
     free(dif);
     return 0;
 }
+
+int get_dif_lenght(char *a, char *b)
+{
+    int begin_a = 0;
+    int begin_b = 0;
+
+    while (b[begin_b] < 33 || b[begin_b] > 119) {
+        begin_b++;
+    }
+    while (a[begin_a] < 33 || a[begin_a] > 119) {
+        begin_a++;
+    }
+    return my_strlen(a) - my_strlen(&b[begin_b]);
+}

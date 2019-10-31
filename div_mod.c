@@ -70,13 +70,14 @@ char *divi(char *a, char *b, int base)
     int result_sign = 0;
     char *result = "!";
     char *neg_result = NULL;
-    int dif_lenght = my_strlen(a) - my_strlen(b);
+    int dif_lenght = get_dif_lenght(a, b);
     char *neg_b = NULL;
 
     result_sign = get_result_sign(a, b, result_sign);
     if (is_res_null(a, b, base) == 1)
         return NULL;
     neg_b = add_minus(b, neg_b);
+    remove_space(&neg_b);
     result = make_div(a, base, neg_b, dif_lenght);
     if (result_sign == -1) {
         neg_result = add_minus(result, neg_result);

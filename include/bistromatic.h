@@ -64,6 +64,7 @@ char *add_zeros(char *nb, char *result, int pow_x);
 void free_and_null(char *str);
 int is_res_null(char *a, char *b, int base);
 char *infinadd_base(char *str1, char *str2, int base);
+int get_dif_lenght(char *a, char *b);
 
 void check_mod_divi_by_zero(char *beta, int idx_op, int base);
 void remove_minus_zero(char *alpha, int base);
