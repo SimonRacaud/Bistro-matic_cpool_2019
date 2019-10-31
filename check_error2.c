@@ -11,7 +11,6 @@
 int check_ops(char const *ops)
 {
     if (my_strlen(ops) != 7) {
-        my_putstr_error(SYNTAX_ERROR_MSG);
         return (EXIT_OPS);
     }
     return 0;
@@ -20,11 +19,9 @@ int check_ops(char const *ops)
 int check_base(char const *b)
 {
     if (my_strlen(b) < 2) {
-        my_putstr_error(SYNTAX_ERROR_MSG);
         return (EXIT_BASE);
     }
     if (my_strlen(b) > 86) {
-        my_putstr_error(SYNTAX_ERROR_MSG);
         return (EXIT_BASE);
     }
     return 0;
