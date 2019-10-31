@@ -23,7 +23,7 @@ Test(mod, mod_zero_by_number)
         res = my_strdup("!");
     }
     substituate(res, "!\"#$%&'()*", "0123456789");
-    cr_assert_str_eq(res, "0");
+    cr_assert_str_eq(res, " 0");
 }
 
 Test(mod, mod_small_numbers)
