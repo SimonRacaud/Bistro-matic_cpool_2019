@@ -62,8 +62,6 @@ int check_only_op_base_in_expr(char *expr, char *base, char *op)
 
     while (expr[++i] != '\0') {
         search[0] = expr[i];
-        if (expr[i] == ' ')
-            continue;
         if (my_strstr(base, search) != NULL)
             continue;
         if (my_strstr(op, search) != NULL)
