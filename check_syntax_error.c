@@ -49,7 +49,7 @@ int check_syntax_error(char const *expr, char const *base)
     int error = 0;
 
     for (int i = 0; i < my_strlen(expr) && expr[i] != '\0'; i++) {
-        if ((expr[i] >= 124 && expr[i] <= 126) &&
+        if ((expr[i] >= 122 && expr[i] <= 126) &&
         (expr[i + 1] >= 124 && expr[i + 1] <= 126)) {
             error += 84;
         }
