@@ -14,7 +14,7 @@ CRITERION =	tests/test_sub.c                        \
                 infinadd/basic.c                        \
                 infinadd/calcul.c                       \
                 add_sub_arithmetic.c                    \
-                mul.c                                   \
+                mul_arithmetic.c                        \
                 div_mod.c                               \
                 substituate.c                           \
                 tests/test_error.c                      \
