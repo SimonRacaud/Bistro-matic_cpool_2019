@@ -25,9 +25,9 @@ static int double_op_error(char const *op, char *op_s, int i, int y)
     return 0;
 }
 
-static int base_eq_op(char b, char o)
+static int base_eq_op(char base, char op)
 {
-    if (b == o) {
+    if (base == op) {
         my_putstr_error(SYNTAX_ERROR_MSG);
         return (84);
     }
