@@ -55,6 +55,9 @@ clean:
 	rm -f $(OBJ_CRIT)
 	rm -f $(CRITERION_NAME)
 	rm -f tests/*.gc*
+	rm -f *.gc*
+	rm -f infadd/*.gc*
+	rm -f eval_expr/*.gc*
 
 fclean:	clean
 	make -C lib/my fclean
