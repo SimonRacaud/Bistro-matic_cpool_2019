@@ -36,11 +36,27 @@ static void remove_minus_for_zero(char *res, int base)
     }
 }
 
+static void display_str(char *res, char *base, char *op)
+{
+    int alpha = 0;
+
+    for (int pos = 0; pos < my_strlen(res); pos++) {
+        if (res[pos] != ' ' && ((res[pos] == base[0] && alpha != 0) ||
+        res[pos] != base[0]) && res[pos] != op[2]) {
+            my_putchar(res[pos]);
+        } else if (pos == my_strlen(res) - 1 && alpha == 0)
+            my_putchar(base[0]);
+        if (res[pos] != ' ' && res[pos] != op[3] && res[pos] != base[0] &&
+        res[pos] != op[2]) {
+            alpha++;
+        }
+    }
+}
+
 void display_result(char *res, char *base, char *op)
 {
     int len_base = my_strlen(base);
     char *old_base = malloc(sizeof(char) * (len_base + 1));
-    int alpha = 0;
 
     for (int i = 33; i < len_base + 33; i++)
         old_base[i - 33] = i;
@@ -48,14 +64,6 @@ void display_result(char *res, char *base, char *op)
     remove_minus_for_zero(res, len_base);
     substituate(res, "xyz{|}~", op);
     substituate(res, old_base, base);
-    for (int pos = 0; pos < my_strlen(res); pos++) {
-        if (res[pos] != ' ' && ((res[pos] == base[0] && alpha != 0) ||
-        res[pos] != base[0])) {
-            my_putchar(res[pos]);
-        } else if (pos == my_strlen(res) - 1 && alpha == 0)
-            my_putchar(base[0]);
-        if (res[pos] != ' ' && res[pos] != op[3] && res[pos] != base[0])
-            alpha++;
-    }
+    display_str(res, base, op);
     free(old_base);
 }
