@@ -189,6 +189,17 @@ Test(global, space_in_op, .init = redirect_all_stdout3)
     cr_assert_stdout_eq_str("2");
 }
 
+Test(global, large_num_spe, .init = redirect_all_stdout3)
+{
+    char expr[62] = "34876542*98765467890/(3476543568976545+-178654356890765445)+9";
+    char base[11] = "0123456789";
+    char op[8] = "()+-*/%";
+    char *av[4] = {"./", base, op, "12"};
+
+    bistro(4, av, expr);
+    cr_assert_stdout_eq_str("-10");
+}
+
 Test(global_error, base_error, .init = redirect_all_stdout3)
 {
     char expr[49] = "1654365856552268432465135678635489946534984324+1";
