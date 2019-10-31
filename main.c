@@ -44,12 +44,14 @@ static int call_check(char *base, char *operators, int ac, char **av)
 {
     if (check_nb_of_parameter(ac, av) == 84)
         return 1;
-    if (check_base(base) != 0)
+    if (check_base(base) != 0 || check_ops(operators) != 0) {
+        my_putstr_error(SYNTAX_ERROR_MSG);
         return 1;
-    if (check_ops(operators) != 0)
+    }
+    if (check_double_op_base(base, operators) != 0) {
+        my_putstr_error(SYNTAX_ERROR_MSG);
         return 1;
-    if (check_double_op_base(base, operators) != 0)
-        return 1;
+    }
     return 0;
 }
 
