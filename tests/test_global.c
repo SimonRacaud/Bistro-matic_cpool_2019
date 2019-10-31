@@ -178,6 +178,17 @@ Test(global, simple_calc_large_number, .init = redirect_all_stdout3)
     cr_assert_stdout_eq_str("1654365856552268432465135678635489946534984325");
 }
 
+Test(global, space_in_op, .init = redirect_all_stdout3)
+{
+    char expr[4] = "1 1";
+    char base[11] = "0123456789";
+    char op[8] = "() -*/%";
+    char *av[4] = {"./", base, op, "12"};
+
+    bistro(4, av, expr);
+    cr_assert_stdout_eq_str("2");
+}
+
 Test(global_error, base_error, .init = redirect_all_stdout3)
 {
     char expr[49] = "1654365856552268432465135678635489946534984324+1";
@@ -215,6 +226,17 @@ Test(global_error, base_eq_op_error, .init = redirect_all_stdout3)
 {
     char expr[49] = "1654365856552268432465135678635489946534984324+1";
     char base[11] = "012+456789";
+    char op[8] = "()+-*/%";
+    char *av[4] = {"./", base, op, "12"};
+
+    bistro(4, av, expr);
+    cr_assert_stderr_eq_str("syntax error");
+}
+
+Test(global_error, space_error, .init = redirect_all_stdout3)
+{
+    char expr[49] = "165436585655226843246513567863549946534984324+ 1";
+    char base[11] = "0123456789";
     char op[8] = "()+-*/%";
     char *av[4] = {"./", base, op, "12"};
 
