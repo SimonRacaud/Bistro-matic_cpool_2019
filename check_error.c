@@ -50,10 +50,8 @@ int check_double_op_base(char *base, char *op)
             error += double_base_error(base, base_stock, i, y);
         for (int y = i + 1; y < my_strlen(op_stock); y++)
             error += double_op_error(op, op_stock, i, y);
-        if (error > 0) {
-            my_putstr_error(SYNTAX_ERROR_MSG);
+        if (error > 0)
             return (EXIT_BASE);
-        }
     }
     return 0;
 }
