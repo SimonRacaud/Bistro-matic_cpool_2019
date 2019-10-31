@@ -48,24 +48,19 @@ void sub_while_pos(int *val, char **a_n_save, char **res_n_add, char *b_with_z)
 
 char *make_div(char *a, int base, char *neg_b, int dif_lenght)
 {
-    char *a_save = "";
-    char *add_result = "";
     char *b_with_zeros = "";
     int begin = 0;
-    char *result = "!";
     int values[] = {base, begin};
-    char *a_and_save[] = {a, a_save};
-    char *res_and_add[] = {result, add_result};
+    char *a_and_save[] = {a, ""};
+    char *res_and_add[] = {"!", ""};
 
     for (int i = dif_lenght; i >= 0; i--) {
         b_with_zeros = add_zeros(neg_b, b_with_zeros, i);
         res_and_add[1] = add_zeros("\"", res_and_add[1], i);
         sub_while_pos(values, a_and_save, res_and_add, b_with_zeros);
         a_and_save[0] = my_strcpy(a_and_save[0], a_and_save[1]);
-        free(b_with_zeros);
-        b_with_zeros = NULL;
-        free(res_and_add[1]);
-        res_and_add[1] = NULL;
+        free_and_null(b_with_zeros);
+        free_and_null(res_and_add[1]);
     }
     free(a_and_save[1]);
     return res_and_add[0];
@@ -77,22 +72,17 @@ char *divi(char *a, char *b, int base)
     char *result = "!";
     char *neg_result = NULL;
     int dif_lenght = my_strlen(a) - my_strlen(b);
-    char *dif = NULL;
     char *neg_b = NULL;
 
     result_sign = get_result_sign(a, b, result_sign);
-    dif = sub(a, b, base);
-    if (dif[0] == 123) {
-        free(dif);
+    if (is_res_null(a, b, base) == 1)
         return NULL;
-    }
     neg_b = add_minus(b, neg_b);
     result = make_div(a, base, neg_b, dif_lenght);
     if (result_sign == -1) {
         neg_result = add_minus(result, neg_result);
         return neg_result;
     }
-    free(dif);
     free(neg_b);
     return result;
 }
@@ -102,16 +92,12 @@ char *mod(char *a, char *b, int base)
     int result_sign = 0;
     char *result = "!";
     char *neg_result = NULL;
-    char *dif = NULL;
 
     if (a[0] == 123 && b[0] == 123)
         result_sign = -1;
     result_sign = get_result_sign(a, b, result_sign);
-    dif = sub(a, b, base);
-    if (dif[0] == 123) {
-        free(dif);
+    if (is_res_null(a, b, base) == 1)
         return NULL;
-    }
     result = sub(a, mul(divi(a, b, base), b, base), base);
     if (result_sign == -1) {
         neg_result = add_minus(result, neg_result);

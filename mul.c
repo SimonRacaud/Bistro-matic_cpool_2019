@@ -53,3 +53,22 @@ char *mul(char *a, char *b, int base)
     free(dif);
     return result;
 }
+
+void free_and_null(char *str)
+{
+    free(str);
+    str = NULL;
+}
+
+int is_res_null(char *a, char *b, int base)
+{
+    char *dif = NULL;
+
+    dif = sub(a, b, base);
+    if (dif[0] == 123) {
+        free(dif);
+        return 1;
+    }
+    free(dif);
+    return 0;
+}
