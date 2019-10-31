@@ -43,19 +43,25 @@ static void increase_begin(char c_seg, int sig, int *begin, int i)
     }
 }
 
+static char *make_recursive(char *seg, int seg_lenght, int prio, int base)
+{
+    if (prio < 1)
+        seg = operator_seeker(seg, seg_lenght, prio + 1, base);
+    return seg;
+}
+
 char *operator_seeker(char *seg, int seg_lenght, int prio, int base)
 {
     char *op_by_priority[] = {"~}|", "z{"};
     int begin = 1;
     int sig = detect_sign(seg, base);
-    int operator = 0;
     int prio_op[2] = {prio, 0};
 
     for (int i = 1; i < seg_lenght - 1; i++) {
         combine_operators(seg);
-        operator = is_operator(seg, i, op_by_priority, prio);
-        if (operator > 0 && sig != i) {
-            prio_op[1] = operator - 1;
+        prio_op[1] = is_operator(seg, i, op_by_priority, prio);
+        if (prio_op[1] > 0 && sig != i) {
+            prio_op[1] = prio_op[1] - 1;
             seg = make_the_operation(seg, prio_op, begin, base);
             i = 0;
             begin = 1;
@@ -63,9 +69,7 @@ char *operator_seeker(char *seg, int seg_lenght, int prio, int base)
             combine_operators(seg);
         } else if (seg[i] > F_DIG + (base - 1) || seg[i] < F_DIG)
             increase_begin(seg[i], sig, &begin, i);
-        operator = 0;
+        prio_op[1] = 0;
     }
-    if (prio < 1)
-        seg = operator_seeker(seg, seg_lenght, prio + 1, base);
-    return seg;
+    return make_recursive(seg, seg_lenght, prio, base);
 }
