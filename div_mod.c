@@ -62,7 +62,6 @@ char *make_div(char *a, int base, char *neg_b, int dif_lenght)
         free_and_null(b_with_zeros);
         free_and_null(res_and_add[1]);
     }
-    free(a_and_save[1]);
     return res_and_add[0];
 }
 

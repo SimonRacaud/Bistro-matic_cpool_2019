@@ -14,7 +14,7 @@ char *make_mul(char *a, char *b, char *result, int base)
 
     for (int i = 0; i < my_strlen(b); i++) {
         a_with_zeros = add_zeros(a, a_with_zeros, my_strlen(b) - i - 1);
-        for (int l = 0; l < b[i] - 33; l++) {
+        for (int j = 0; j < b[i] - 33; j++) {
             result = infinadd_base(result, a_with_zeros, base);
         }
         free(a_with_zeros);
