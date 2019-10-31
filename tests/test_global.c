@@ -67,7 +67,7 @@ Test(global, simple_calc , .init = redirect_all_stdout3)
     cr_assert_stdout_eq_str("2");
 }
 
-Test(global2, simple_calc_with_keeper, .init = redirect_all_stdout3)
+Test(global, simple_calc_with_keeper, .init = redirect_all_stdout3)
 {
     char expr[4] = "9+9";
     char base[11] = "0123456789";
@@ -78,7 +78,7 @@ Test(global2, simple_calc_with_keeper, .init = redirect_all_stdout3)
     cr_assert_stdout_eq_str("18");
 }
 
-Test(global3, simple_calc_not_enough_param , .init = redirect_all_stdout3)
+Test(global, simple_calc_not_enough_param , .init = redirect_all_stdout3)
 {
     int ret;
     char expr[4] = "1+1";
@@ -90,7 +90,7 @@ Test(global3, simple_calc_not_enough_param , .init = redirect_all_stdout3)
     cr_assert(ret == 84);
 }
 
-Test(global4, simple_calc_with_par , .init = redirect_all_stdout3)
+Test(global, simple_calc_with_par , .init = redirect_all_stdout3)
 {
     char expr[8] = "3*(3+3)";
     char base[11] = "0123456789";
@@ -101,7 +101,7 @@ Test(global4, simple_calc_with_par , .init = redirect_all_stdout3)
     cr_assert_stdout_eq_str("18");
 }
 
-Test(global5, simple_calc_combine_op , .init = redirect_all_stdout3)
+Test(global, simple_calc_combine_op , .init = redirect_all_stdout3)
 {
     char expr[8] = "----3+3";
     char base[11] = "0123456789";
@@ -112,7 +112,7 @@ Test(global5, simple_calc_combine_op , .init = redirect_all_stdout3)
     cr_assert_stdout_eq_str("6");
 }
 
-Test(global6, simple_calc_just_0 , .init = redirect_all_stdout3)
+Test(global, simple_calc_just_0 , .init = redirect_all_stdout3)
 {
     char expr[2] = "0";
     char base[11] = "0123456789";
@@ -123,7 +123,7 @@ Test(global6, simple_calc_just_0 , .init = redirect_all_stdout3)
     cr_assert_stdout_eq_str("0");
 }
 
-Test(global7, simple_calc_sub_0 , .init = redirect_all_stdout3)
+Test(global, simple_calc_sub_0 , .init = redirect_all_stdout3)
 {
     char expr[7] = "-(1-1)";
     char base[11] = "0123456789";
@@ -134,7 +134,7 @@ Test(global7, simple_calc_sub_0 , .init = redirect_all_stdout3)
     cr_assert_stdout_eq_str("0");
 }
 
-Test(global8, simple_calc_div_norest , .init = redirect_all_stdout3)
+Test(global, simple_calc_div_norest , .init = redirect_all_stdout3)
 {
     char expr[5] = "10/2";
     char base[11] = "0123456789";
@@ -145,7 +145,7 @@ Test(global8, simple_calc_div_norest , .init = redirect_all_stdout3)
     cr_assert_stdout_eq_str("5");
 }
 
-Test(global9, complex_calc, .init = redirect_all_stdout3)
+Test(global, complex_calc, .init = redirect_all_stdout3)
 {
     char expr[49] = "-(12*(13+15/5*(6/(12+14%(30%5+(10*25)-46)+16))))";
     char base[11] = "0123456789";
@@ -156,7 +156,7 @@ Test(global9, complex_calc, .init = redirect_all_stdout3)
     cr_assert_stdout_eq_str("-156");
 }
 
-Test(global10, complex_calc_complex_base_op, .init = redirect_all_stdout3)
+Test(global, complex_calc_complex_base_op, .init = redirect_all_stdout3)
 {
     char expr[13] = "-(e@-(;*!@))";
     char base[11] = "~^@!;ie& ]";
@@ -167,7 +167,7 @@ Test(global10, complex_calc_complex_base_op, .init = redirect_all_stdout3)
     cr_assert_stdout_eq_str("ee");
 }
 
-Test(global11, simple_calc_large_number, .init = redirect_all_stdout3)
+Test(global, simple_calc_large_number, .init = redirect_all_stdout3)
 {
     char expr[49] = "1654365856552268432465135678635489946534984324+1";
     char base[11] = "0123456789";
@@ -176,4 +176,48 @@ Test(global11, simple_calc_large_number, .init = redirect_all_stdout3)
 
     bistro(4, av, expr);
     cr_assert_stdout_eq_str("1654365856552268432465135678635489946534984325");
+}
+
+Test(global_error, base_error, .init = redirect_all_stdout3)
+{
+    char expr[49] = "1654365856552268432465135678635489946534984324+1";
+    char base[11] = "0123456989";
+    char op[8] = "()+-*/%";
+    char *av[4] = {"./", base, op, "12"};
+
+    bistro(4, av, expr);
+    cr_assert_stderr_eq_str("syntax error");
+}
+
+Test(global_error, op_error, .init = redirect_all_stdout3)
+{
+    char expr[49] = "1654365856552268432465135678635489946534984324+1";
+    char base[11] = "0123456789";
+    char op[8] = "()/-*/%";
+    char *av[4] = {"./", base, op, "12"};
+
+    bistro(4, av, expr);
+    cr_assert_stderr_eq_str("syntax error");
+}
+
+Test(global_error, both_error, .init = redirect_all_stdout3)
+{
+    char expr[49] = "1654365856552268432465135678635489946534984324+1";
+    char base[11] = "0124456789";
+    char op[8] = "()/-*/%";
+    char *av[4] = {"./", base, op, "12"};
+
+    bistro(4, av, expr);
+    cr_assert_stderr_eq_str("syntax error");
+}
+
+Test(global_error, base_eq_op_error, .init = redirect_all_stdout3)
+{
+    char expr[49] = "1654365856552268432465135678635489946534984324+1";
+    char base[11] = "012+456789";
+    char op[8] = "()+-*/%";
+    char *av[4] = {"./", base, op, "12"};
+
+    bistro(4, av, expr);
+    cr_assert_stderr_eq_str("syntax error");
 }
