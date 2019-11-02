@@ -191,11 +191,12 @@ Test(global, space_in_op, .init = redirect_all_stdout3)
 
 Test(global, large_num_spe, .init = redirect_all_stdout3)
 {
-    char expr[62] = "34876542*98765467890/(3476543568976545+-178654356890765445)+9";
+    char expr[62] = "34876542*98765467890/(3476543568976545+-";
     char base[11] = "0123456789";
     char op[8] = "()+-*/%";
     char *av[4] = {"./", base, op, "12"};
 
+    my_strcat(expr, "178654356890765445)+9");
     bistro(4, av, expr);
     cr_assert_stdout_eq_str("-10");
 }
