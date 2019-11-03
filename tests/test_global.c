@@ -264,7 +264,7 @@ Test(global_error, with_neg_number2, .init = redirect_all_stdout3)
     char *av[4] = {"./", base, op, "12"};
 
     bistro(4, av, expr);
-    cr_assert_stderr_eq_str("-40");
+    cr_assert_stdout_eq_str("-40");
 }
 
 Test(global, big3, .init = redirect_all_stdout3)

@@ -58,6 +58,19 @@ static int opera_len(char *ops, char operator, int base)
 
 static char *replace_operation(char *seg, char *op, int begin, int op_len)
 {
+    char *tmp = op;
+    int pos = 0;
+    int space_counter = 0;
+
+    for (int i = 0; i < my_strlen(op); i++) {
+        if (op[i] != ' ') {
+            tmp[pos++] = op[i];
+        } else
+            space_counter++;
+    }
+    for (int i = 0; i < space_counter; i++)
+        tmp[pos++] = C_IGNORE;
+    op[pos] = '\0';
     for (int i = 0; i < op_len; i++)
         seg[begin + i] = op[i];
     return seg;
