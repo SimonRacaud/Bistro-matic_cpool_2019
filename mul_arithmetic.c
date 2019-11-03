@@ -14,7 +14,10 @@ char *make_mul(char *a, char *b, char *result, int base)
 
     if (a[0] == 'z')
         a[0] = C_IGNORE;
+    if (b[0] == 'z')
+        b[0] = C_IGNORE;
     remove_space(&a);
+    remove_space(&b);
     for (int i = 0; i < my_strlen(b); i++) {
         a_with_zeros = add_zeros(a, a_with_zeros, my_strlen(b) - i - 1);
         for (int j = 0; j < b[i] - 33; j++) {
