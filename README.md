@@ -1,6 +1,8 @@
 # CPool_bistro-matic_2019
 Calculatrice pouvant évaluer des expressions comportant des nombres de tailles "infinis" et dans n'importe quelle base.
 
+Note: 100% tests [moulinette Epitech].
+
 ∼/B-CPE-101> echo ‘3+6’ | ./calc 0123456789 ‘()+-*/%’ 3 ; echo
 
     9
