@@ -1,5 +1,5 @@
 # CPool_bistro-matic_2019
-Calculatrice pouvant évaluer des expressions comportant des nombres de tailles "infinis" et dans n'importe quelle base (1, 2(binaire), 3, 4, .., 8(ocale), ..., 16(hexadécimal), etc...).
+Calculatrice pouvant évaluer des expressions comportant des nombres de tailles "infinis" et dans n'importe quelle base (1, 2(binaire), 3, 4, .., 8(octal), ..., 16(hexadécimal), etc...).
 
 Il est aussi possible de changer les caractères utilisés pour les chiffres et les opérateurs.
 
