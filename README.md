@@ -3,8 +3,8 @@ Calculatrice pouvant évaluer des expressions comportant des nombres de tailles 
 
 Il est aussi possible de changer les caractères utilisés pour les chiffres et les opérateurs.
 
-# Résultats
-Note: 100% tests [NaoMarvin Epitech].
+# Résultats scolaire
+Note: 100% [Tests Epitech]. 0 Faute de Norme. 20/20 note finale.
 
 # Usage
 ```
@@ -45,3 +45,8 @@ DESCRIPTION
 ∼/B-CPE-101> echo ‘-(12*(13+15/5*(6/(12+14%(30%5+(10*25)-46)+16)-20)/43)*20)*(-(12-98*42)*(16+63-50/3))’ | ./calc 0123456789 ‘()+-*/%’ 84 | cat -e ; echo
 ```
  > -744629760
+
+# Equipe:
+* thomas.jouanolle
+* alexis.jouquan
+* simon.racaud
