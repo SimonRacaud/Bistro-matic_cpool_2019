@@ -5,8 +5,8 @@ Calculatrice pouvant évaluer des expressions comportant des nombres de tailles 
 
 Il est aussi possible de changer les caractères utilisés pour les chiffres et les opérateurs.
 
-# Résultats scolaire
-Note: 100% [Tests Epitech]. 0 Faute de Norme. 20/20 note finale.
+# Mark
+Final Mark: 100% [Tests Epitech]. 0 Coding-style mistake. 20/20 final mark.
 
 # Usage
 ```
