@@ -1,9 +1,9 @@
 # CPool_bistro-matic_2019
 Epitech's first-year project.
 
-Calculatrice pouvant évaluer des expressions comportant des nombres de tailles "infinis" et dans n'importe quelle base (1, 2 (binaire), 3, 4, .., 8 (octal), ..., 16 (hexadécimal), etc...).
+Calculator that can evaluate expressions with "infinite" number sizes and in any base (1, 2 (binary), 3, 4, ..., 8 (octal), ..., 16 (hexadecimal), etc...).
 
-Il est aussi possible de changer les caractères utilisés pour les chiffres et les opérateurs.
+It is also possible to change the characters used for numbers and operators.
 
 # Mark
 Final Mark: 100% [Tests Epitech]. 0 Coding-style mistake. 20/20 final mark.
@@ -48,7 +48,7 @@ DESCRIPTION
 ```
  > -744629760
 
-# Equipe:
+# Team:
 * thomas.jouanolle
 * alexis.jouquan
 * simon.racaud
